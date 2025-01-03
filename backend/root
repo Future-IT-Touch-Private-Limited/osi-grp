@@ -1,0 +1,533 @@
+-- MySQL dump 10.13  Distrib 8.3.0, for macos14 (arm64)
+--
+-- Host: localhost    Database: traveldb
+-- ------------------------------------------------------
+-- Server version	8.3.0
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `applied_visas`
+--
+
+DROP TABLE IF EXISTS `applied_visas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `applied_visas` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned NOT NULL,
+  `country_id` bigint unsigned NOT NULL,
+  `visa_type_id` bigint unsigned NOT NULL,
+  `applied_at` timestamp NULL DEFAULT NULL,
+  `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `applied_visas_user_id_foreign` (`user_id`),
+  KEY `applied_visas_country_id_foreign` (`country_id`),
+  KEY `applied_visas_visa_type_id_foreign` (`visa_type_id`),
+  CONSTRAINT `applied_visas_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `applied_visas_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `customerdatas` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `applied_visas_visa_type_id_foreign` FOREIGN KEY (`visa_type_id`) REFERENCES `visatypes` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `applied_visas`
+--
+
+LOCK TABLES `applied_visas` WRITE;
+/*!40000 ALTER TABLE `applied_visas` DISABLE KEYS */;
+INSERT INTO `applied_visas` VALUES (5,9,1,2,NULL,'pending','2024-09-24 11:25:25','2024-09-24 11:25:25'),(6,10,1,2,NULL,'pending','2024-09-24 11:30:24','2024-09-24 11:30:24'),(7,10,1,2,NULL,'pending','2024-09-24 11:34:22','2024-09-24 11:34:22');
+/*!40000 ALTER TABLE `applied_visas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cache`
+--
+
+DROP TABLE IF EXISTS `cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cache`
+--
+
+LOCK TABLES `cache` WRITE;
+/*!40000 ALTER TABLE `cache` DISABLE KEYS */;
+INSERT INTO `cache` VALUES ('356a192b7913b04c54574d18c28d46e6395428ab','i:1;',1726115210),('356a192b7913b04c54574d18c28d46e6395428ab:timer','i:1726115210;',1726115210),('a17961fa74e9275d529f489537f179c05d50c2f3','i:2;',1727195720),('a17961fa74e9275d529f489537f179c05d50c2f3:timer','i:1727195720;',1727195720);
+/*!40000 ALTER TABLE `cache` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cache_locks`
+--
+
+DROP TABLE IF EXISTS `cache_locks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cache_locks`
+--
+
+LOCK TABLES `cache_locks` WRITE;
+/*!40000 ALTER TABLE `cache_locks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cache_locks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `countries`
+--
+
+DROP TABLE IF EXISTS `countries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `countries` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `Countryname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Countrycode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flag` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numbercode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Cardimage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `GetVisaInDays` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `mandatory_docs` json DEFAULT NULL,
+  `FAQ` json DEFAULT NULL,
+  `countrystatus` json DEFAULT NULL,
+  `Age_lessthen_18` json DEFAULT NULL,
+  `Employed` json DEFAULT NULL,
+  `isFunded` json DEFAULT NULL,
+  `Self_employed` json DEFAULT NULL,
+  `Student` json DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `countries`
+--
+
+LOCK TABLES `countries` WRITE;
+/*!40000 ALTER TABLE `countries` DISABLE KEYS */;
+INSERT INTO `countries` VALUES (1,'USA','1','01J7J8W56MYN3Q669G35B9WQVS.webp','1','01J7J8W56PS23BMW20C0W24DS9.avif','5',34342,'2024-09-11 23:16:42','2024-09-16 00:47:03','[{\"text\": \"<ul><li>Original passport for biometric appointment.</li><li>Old passport (if any).</li></ul>\", \"heading\": \"Original Passport\"}, {\"text\": \"<ul><li>Clearly stating the purpose of travel, duration, and passport details.</li></ul><p><br></p>\", \"heading\": \"Cover letter\"}, {\"text\": \"<ul><li>Last 6 months\' bank statements.</li></ul><p><br></p>\", \"heading\": \"Bank Statement\"}, {\"text\": \"<ul><li>Personal Income Tax Return for the last 3 years.</li></ul><p><br></p>\", \"heading\": \"Income Tax Return\"}]','[{\"answer\": \"A United States of America (USA) tourist visa takes 7 to 10 working days to process after your appointment at the visa application centre is completed.\", \"question\": \"What is the processing time for USA Tourist visa?\"}, {\"answer\": \"You can Track your United States of America (USA) Visa Application online using your Immigrant Visa Case Number. Rest assured, Teleport will promptly update you regarding your visa status vIA Whatsapp and Email.\", \"question\": \"How can I check my United States of America (USA) visa application status online?\"}]','[]','[{\"text\": \"<ul><li>Original passport for biometric appointment.</li><li>Original passport for biometric appointment.</li></ul>\", \"heading\": \"Original Passport\"}]','[{\"text\": \"<ul><li>Original passport for biometric appointment.</li><li>Original passport for biometric appointment.</li></ul><p><br></p>\", \"heading\": \"Original Passport\"}]','[{\"text\": \"<ul><li>Originfwe4wrf</li></ul><p><br></p>\", \"heading\": \"Original Passporta\"}, {\"text\": \"<p>ffw4rdfe3d3d23dee3d2</p>\", \"heading\": \"vrwfrwfrw\"}]','[{\"text\": \"<ul><li>Original passport for biometric appointment.</li><li>Original passport for biometric appointment.</li></ul><p><br></p><p><br></p>\", \"heading\": \"Original Passporta\"}]','[{\"text\": \"<ul><li>Original passport for biometric appointment.</li><li>Original passport for biometric appointment.</li></ul><p><br></p><p><br></p>\", \"heading\": \"Original Passporta\"}]');
+/*!40000 ALTER TABLE `countries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `countryblogs`
+--
+
+DROP TABLE IF EXISTS `countryblogs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `countryblogs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `countryblogs`
+--
+
+LOCK TABLES `countryblogs` WRITE;
+/*!40000 ALTER TABLE `countryblogs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `countryblogs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customerdatas`
+--
+
+DROP TABLE IF EXISTS `customerdatas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `customerdatas` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phonenumber` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customerdatas`
+--
+
+LOCK TABLES `customerdatas` WRITE;
+/*!40000 ALTER TABLE `customerdatas` DISABLE KEYS */;
+INSERT INTO `customerdatas` VALUES (1,'manshu','manshu@gmail.com',NULL,'$2y$12$Wq08xKNAp6O92mA5EeYly.aBg31K51HTJmsdJ6WIpQXPolHwOFJMy','2024-09-16 22:59:35','2024-09-16 22:59:35'),(2,'manshu eeee','manshu1234@gmail.com',NULL,'$2y$12$D1nu444MY2Bdy4jm4Jnmv./cbqwmXybex7uQHzjnmkrK2TP41MasG','2024-09-23 03:48:52','2024-09-23 03:48:52'),(3,'mummy','mum@mail.com',NULL,'$2y$12$.et1WyzGYN5EveRiecHu9OOqwZLvCnKMHjcqIgkkamqf0SyG.xaE6','2024-09-23 03:49:55','2024-09-23 03:49:55'),(4,'manshu','manshu.developer@gmail.com',NULL,'$2y$12$7dCVVbjm4OMpHxiw/JbzPue9pao6orbyOmsd953.t0sECXWHRXUZa','2024-09-24 00:34:24','2024-09-24 00:34:24'),(5,'manshu','manshu123@gmail.com',NULL,'$2y$12$4NJsKgjfcHK5/6bjDudDTOHmcTFa78tAjSkl4p4tjhNkl4Fh0.yla','2024-09-24 00:36:19','2024-09-24 00:36:19'),(6,'vishal','vishal@mail.com',NULL,'$2y$12$X3niN35gFP7ZVdRhyLHNmu5dT4T4KOxKcnAG6TDqSZ5KM3q/elJNS','2024-09-24 00:45:03','2024-09-24 00:45:03'),(7,'vishal bhai','vishalbhai@mail.com',NULL,'$2y$12$hj2Knp67b6JM8pSyAip38uXqawS2nazsJ8ISk/2ypKM3m7oGyj0cC','2024-09-24 01:14:34','2024-09-24 01:14:34'),(8,'newmail','newuser@mail.com',NULL,'$2y$12$XxXzKTEetib8BuQS8m0fKeEdWZu11dJjJKMyvgk4yAcPDHxegkMSS','2024-09-24 11:20:17','2024-09-24 11:20:17'),(9,'tiya','tiya@mail.com',NULL,'$2y$12$GtOhzh0bMPv2jfAfraj1HuS.hwYOBxOuHYH1.jducw/cfH7ObPqeC','2024-09-24 11:25:09','2024-09-24 11:25:09'),(10,'jass karan','jass@gmail.com','7988532993','$2y$12$xh//egU3OV6qe48C6ArUPOzbR7zwqRSQz.YcF/aVcla.DC8WDM5IC','2024-09-24 11:29:32','2024-09-24 11:29:32');
+/*!40000 ALTER TABLE `customerdatas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+LOCK TABLES `failed_jobs` WRITE;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `job_batches`
+--
+
+DROP TABLE IF EXISTS `job_batches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `job_batches` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_batches`
+--
+
+LOCK TABLES `job_batches` WRITE;
+/*!40000 ALTER TABLE `job_batches` DISABLE KEYS */;
+/*!40000 ALTER TABLE `job_batches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jobs`
+--
+
+DROP TABLE IF EXISTS `jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint unsigned NOT NULL,
+  `reserved_at` int unsigned DEFAULT NULL,
+  `available_at` int unsigned NOT NULL,
+  `created_at` int unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `jobs_queue_index` (`queue`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobs`
+--
+
+LOCK TABLES `jobs` WRITE;
+/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(4,'2024_09_09_065029_create_personal_access_tokens_table',1),(5,'2024_09_09_065316_create_countries_table',1),(6,'2024_09_09_072939_create_visatypes_table',1),(7,'2024_09_09_110336_add_mandatory_docs_to_countries_table',1),(8,'2024_09_09_111632_f_a_q',1),(9,'2024_09_09_115110_countrystatus',1),(10,'2024_09_10_072742_otherdata',1),(11,'2024_09_11_044927_create_customerdatas_table',1),(12,'2024_09_11_073946_create_testimonials_table',1),(13,'2024_09_11_093434_create_countryblogs_table',1),(14,'2024_09_13_092744_add_country_id_to_visatypes_table',2),(15,'2024_09_16_065708_create_siteusers_table',3),(17,'2024_09_24_064952_create_applied_visas_table',4),(18,'2024_09_24_101555_add_country_id_to_visatypes_table',5),(19,'2024_09_24_103333_modify_countryname_nullable_in_visatypes_table',6),(20,'2024_09_24_164714_add_phonenumber_to_customerdata_table',7);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+DROP TABLE IF EXISTS `password_reset_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+LOCK TABLES `password_reset_tokens` WRITE;
+/*!40000 ALTER TABLE `password_reset_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_reset_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+DROP TABLE IF EXISTS `personal_access_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+LOCK TABLES `personal_access_tokens` WRITE;
+/*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint unsigned DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sessions_user_id_index` (`user_id`),
+  KEY `sessions_last_activity_index` (`last_activity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sessions`
+--
+
+LOCK TABLES `sessions` WRITE;
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+INSERT INTO `sessions` VALUES ('9sG0aDDVNUPYuUAgnNketu4xOJKQVjowEDPs7i90',1,'127.0.0.1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoiQTN1Q2RESXFxTlVJdjhiOU1wZ3llc3Npa1ZVcW9pZGc5eUpiNEdhbiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMiRCRHlvTG56amRzMWdwQjRHVEhwVlJPcFBSS1BhTXl2U0ljdm5TT3pjdDFEZkpMNVhpbzY0aSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbiI7fXM6ODoiZmlsYW1lbnQiO2E6MDp7fX0=',1727197584),('qcOulP6owvy6ofRlHJ7ptgsI0MSVsk8S9jF9DVeI',NULL,'127.0.0.1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWllLTEFxNzFGdHdTdmpWSlU3dWZNcGg3MzNPN1dxTGFKNFE1TndNVCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2FkbWluL3Zpc2F0eXBlcyI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYWRtaW4vdmlzYXR5cGVzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1727236859),('rKagaYZ8fnhGlviSQkRTBW4WPPlI5XxwDfvpUQB7',NULL,'127.0.0.1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUkVGeUZKZW1OdUI3Y3BpTjVJZVZaQzBhdURia0R4VzZYQUdOTjVHTyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNzoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2FkbWluIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbi9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1727238542),('VHrPhPauKRZEpVHUqLv7aNFKJZxCOGz3nM3rbQjU',1,'127.0.0.1','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36','YTo3OntzOjY6Il90b2tlbiI7czo0MDoiM2dRbHBnUzdHZjBseG5nakoxcVlDOWwyNUc4ckUxS3RXeDMzTHl2UiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYWRtaW4vdmlzYXR5cGVzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEyJEJEeW9MbnpqZHMxZ3BCNEdUSHBWUk9wUFJLUGFNeXZTSWN2blNPemN0MURmSkw1WGlvNjRpIjtzOjg6ImZpbGFtZW50IjthOjA6e319',1727174749);
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `siteusers`
+--
+
+DROP TABLE IF EXISTS `siteusers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `siteusers` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `siteusers_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `siteusers`
+--
+
+LOCK TABLES `siteusers` WRITE;
+/*!40000 ALTER TABLE `siteusers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `siteusers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `testimonials`
+--
+
+DROP TABLE IF EXISTS `testimonials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `testimonials` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stars` int NOT NULL,
+  `review` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+LOCK TABLES `testimonials` WRITE;
+/*!40000 ALTER TABLE `testimonials` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testimonials` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'admin','admin@mail.com',NULL,'$2y$12$BDyoLnzjds1gpB4GTHpVROpPRKPaMyvSIcvnSOzct1DfJL5Xio64i',NULL,'2024-09-11 22:52:19','2024-09-11 22:52:19');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `visatypes`
+--
+
+DROP TABLE IF EXISTS `visatypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `visatypes` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `visa_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `countryname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `visa_duration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `visa_validity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `processing_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pay_per_aduit` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `country_id` bigint unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `visatypes_country_id_foreign` (`country_id`),
+  CONSTRAINT `visatypes_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `visatypes`
+--
+
+LOCK TABLES `visatypes` WRITE;
+/*!40000 ALTER TABLE `visatypes` DISABLE KEYS */;
+INSERT INTO `visatypes` VALUES (2,'Sticker',NULL,'30','30','30','20000','2024-09-24 05:04:51','2024-09-24 05:13:42',1),(3,'vsfsr',NULL,'29','20','23','30000','2024-09-24 05:15:47','2024-09-24 05:15:47',1);
+/*!40000 ALTER TABLE `visatypes` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-09-25 15:24:32
