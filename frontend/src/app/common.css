@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prosto+One&display=swap');
+
+*{
+    font-family: lexend;
+}
+
+body{
+  overflow-x: hidden;
+  
+}
+
+.swiper-slide {
+    width: 400px; 
+  }
+
+
+  .comapines-images{
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .comapines-images::-webkit-scrollbar{
+    display: none;
+  }
+
+  .my-element {
+    position: relative;
+    z-index: 1; /* Ensures the content is above the pseudo-element */
+    padding: 20px;
+  }
+  
+  .my-element::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 20%;
+    left: 20%;
+   
+    background: url('/img/travelIconLogo.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.1; 
+    z-index: -1; 
+  }
+  
+
+  .singleCardBtns{
+    overflow-x: auto;
+  }
+  .singleCardBtns::-webkit-scrollbar{
+    display: none;
+  }
+  .nonbar::-webkit-scrollbar{
+    width: 0px;
+  }
+
+::-webkit-scrollbar {
+  width: 8px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #E96525; 
+  border-radius: 10px;
+  border: 2px solid #f0f0f0; 
+}
+
+
+.SingleMultipleEntryBtnsParent{
+  overflow-x: auto;
+}
+.SingleMultipleEntryBtnsParent::-webkit-scrollbar{
+  display: none;
+}
+
+/* .bgAdresssLogo{
+  position: relative;
+} */
+
+.bgAdresssLogo::after{
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("/img/travelIconLogo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+}
+
+
+.AboutUs{
+  background-image: url("/img/aboutUsImg.avif");
+  background: center;
+  background-size: cover;
+  /* background-color: red; */
+}
+
+
+
+@media (min-width:1299px) {
+  .stepTextAndAnimation::after{
+    content: "";
+    height:80%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("/img/steps-bg-image-visa.png");
+    background-position: center;
+    background-size: cover;
+    
+  }
+  
+}
+@media (min-width:1600px) {
+    .stepTextAndAnimation::after{
+        margin: auto;
+        width: 70%;
+        height:100%;
+        top: 10%;
+
+    }
+}
+
+.stepbystepSideLineAnimation{
+
+  /* background-color: red !important; */
+  background-color: #f5f9ff;
+}
+.stepbystepSideLineAnimation::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  animation: stepAnime  5s alternate infinite ;
+}
+@keyframes stepAnime {
+  from{
+    background-color: #045e541b;
+    height: 0%;
+  }
+  to{
+    background-color: #045e548b;
+    height: 100%;
+  }
+}
+.anim2{
+  animation: anime2 10s infinite linear 0.7s ;
+}
+@keyframes anime2 {
+  0%{
+    color: white;
+  }
+  80%{color: white;}
+  100%{
+    color: black;
+  }
+  
+}
+.anim3{
+  animation: anime3 10s infinite linear 1.2s ;
+
+}
+@keyframes anime3 {
+  0%{
+    color: white;
+  }
+  68%{color: white;}
+  100%{
+    color: black;
+  }
+  
+}
+.anim4{
+  animation: anime4 10s infinite linear 1.7s ;
+
+}
+@keyframes anime4 {
+  0%{
+    color: white;
+  }
+  60%{color: white;}
+  100%{
+    color: black;
+  }
+  
+}
+.anim5{
+  animation: anime5 10s infinite linear 2.1s ;
+
+}
+@keyframes anime5 {
+  0%{
+    color: white;
+  }
+  52%{color: white;}
+  100%{
+    color: black;
+  }
+  
+}
+
+
+
+
+
