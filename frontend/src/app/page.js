@@ -4,6 +4,8 @@ import SearchPlaces from "./components/SearchPlaces/SearchPlaces"
 import TestiMonial from "./components/testimonials/TestiMonial"
 import HowWork from "./components/HowWork"
 import StartAgain from "./components/StartAgain"
+import SuccessStory from "./components/SuccessStory"
+import AboutDirector from "./components/AboutDirector"
 
 
 const page = () => {
@@ -12,8 +14,11 @@ const page = () => {
     <Herosection/>
     <SearchPlaces/>
     <Companies/>
-    <TestiMonial/>
+      <AboutDirector/>
+    <SuccessStory/>
+    
     <HowWork/>
+    <TestiMonial/>
     <StartAgain/>
    
 

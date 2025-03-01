@@ -64,35 +64,37 @@ export default function Footer() {
 
 
   return (
-    <div className="Footer  bg-[#035D53] mt-32  ">
-  <div className="relative -top-28">
+      <div className="Footer relative     mt-16 md:mt-40  ">
+
+{/* <div className="absolute  inset-0  "/> */}
+
+
+  <div className="pt-5  xl:pt-20 bg-cover bg-center   bg-[url('/img/successstory-bg.webp')]">
+  <div className="relative -mt-24 md:-mt-36  xl:-mt-40 ">
     <TravelDesination/>
     </div>
 
 
-    <div className="text-white">
-      <div className=" px-5 md:px-15 lg:px-20 ">
-      <Link href={"/"}>
-      <figure className="w-[200px] bg-white rounded p-2">
-            <img
-              className="w-[100%] h-auto rounded-full object-cover"
-              src="/img/travelCompanyLogo.png"
-              width={200}
-              height={100}
-              alt="Site Logo"
-            />
-          </figure>
-      </Link>
+    <div className="text-white z-30 relative">
+      <div className=" px-5 md:px-16 xl:px-32 ">
+      <Link href="/" className=" ">
+        <img
+          className="h-[80px] lg:h-[75px] object-cover -translate-x-3 md:-translate-x-5"
+          src="/img/newSiteEditLogo.png"
+        
+          alt="Site Logo"
+        />
+    </Link>
         <div className="flex flex-col gap-10  lg:grid  lg:grid-cols-3 mt-5 lg:justify-items-center">
 
           <div className="flex flex-col gap-8">
             <h6>Address</h6>
             <div>
-              <h6>❤️ Mohali</h6>
+              <h6>❤️ Chandigarh</h6>
               <p>
                 {/* BHIVE Workspace - No.112, AKR Tech Park, &ldquo; B &ldquo; and, 7th Mile Hosur
                 Rd Krishna Reddy Industrial Area, Bengaluru, Karnataka 560068 */}
-                 SCO 45, FIRST FIRST, CITY HEART, SECTOR 125, MOHALI
+                Sco- 327, first floor, 40D, Sector 40D, Chandigarh, 160039
               </p>
             </div>
             <div className="  bg-[#60A765]  flex gap-2 items-center w-fit px-2 py-2 rounded">
@@ -128,17 +130,17 @@ export default function Footer() {
             <a href="/contact">Contact us</a>
             <a href="/blog" className="cursor-pointerr">Blogs</a>
           </div>
-          <div className="hidden md:flex flex-col gap-5">
-            <h6>Privacy Policy</h6>
+          <div className="hidden md:flex flex-col gap-5 cursor-pointer">
+            {/* <h6>Privacy Policy</h6> */}
             <h6>Refund & cancellation policy</h6>
             <h6>Pricing</h6>
-            <h6>Terms & conditions</h6>
+            {/* <h6>Terms & conditions</h6> */}
           </div> 
         </div>
       </div>
         <hr className="mt-16" />
 
-        <div className=" px-5 md:px-15 lg:px-20 py-10 lg:py-20 ">
+        <div className=" px-5 md:px-16 xl:px-32 pt-10 ">
         <h2 className="mb-5 text-2xl font-semibold">Read more about visas</h2>
       
         <ul
@@ -155,6 +157,33 @@ export default function Footer() {
        
     </div>
     </div>
+    <div className="py-4  px-5 md:px-16 lg:px-32 ">
+          <div className="md:flex flex-wrap  lg:grid lg:grid-cols-3 lg:justify-items-center  xl:flex xl:justify-between  items-center text-sm text-white justify-center md">
+            <p className="text-center">
+              © {new Date().getFullYear()}  OIC Global  Your Dream Our Mission. All rights
+              reserved.
+            </p>
+            <p className="">
+              <span className="flex md justify-center md">
+                Designed by&nbsp;
+                <a
+                  href="https://www.futuretouch.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {" "}
+                  Future IT Touch ❤️
+                </a>
+              </span>
+            </p>
+            <div className="space-x-4 mb-2 md:mb-0  flex md justify-center md">
+              <Link href="/privacy-policy">Privacy Policy  | </Link>
+              <Link href="/terms-conditions">Terms & Conditions </Link>
+            </div>
+          </div>
+        </div>
+  </div>
+  
     </div>
   );
 }

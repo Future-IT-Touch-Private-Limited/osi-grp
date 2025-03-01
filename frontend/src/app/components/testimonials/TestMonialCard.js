@@ -28,10 +28,15 @@ export default function TestMonialCard({elm}) {
         <div>
           <div className="reviewUserDetails flex gap-4 items-center">
             <figure className="w-16 h-16">
-              <img
+              {/* <img
                 src={`${storageurl}/${image}`}
                 alt="user review"
                 className="rounded-full object-cover"
+              /> */}
+              <img
+                src={`/img/TeamMember1.webp`}
+                alt="user review"
+                className="rounded-full object-cover object-right h-16 w-16"
               />
             </figure>
             <div className="flex flex-col">

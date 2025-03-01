@@ -80,7 +80,7 @@ body{
   position: relative;
 } */
 
-.bgAdresssLogo::after{
+/* .bgAdresssLogo::after{
   content: "";
   height: 100%;
   width: 100%;
@@ -92,7 +92,7 @@ body{
   background-repeat: no-repeat;
   opacity: 0.1;
 }
-
+ */
 
 .AboutUs{
   background-image: url("/img/aboutUsImg.avif");
@@ -209,5 +209,136 @@ body{
 
 
 
+.success-stroy-card:before {
+  content: "s";
+  background-color:white;
+  bottom: 99.92%;
+  clip-path: polygon(50% 100%,100% 0,100% 100%,0 100%,0 0);
+  height: 60px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.success-stroy-card {
+  position: relative;
+  padding: 0 40px 45px;
+  background-color: white;
+  box-shadow: 0px 15px 35px rgba(0,0,0,.04);
+  text-align: center;
+}
 
 
+
+
+.sccuessStory-testmonail-filter{
+  filter: brightness(0) saturate(100%) invert(14%) sepia(91%) saturate(4275%) hue-rotate(350deg) brightness(93%) contrast(87%);
+}
+
+
+
+
+/* hero Section anmie  */
+
+.hero-cloud {
+  animation: floatX2 20s ease-in-out infinite;
+}
+
+@keyframes floatX2 {
+  0% {
+    transform: translateX(-0%); /* Start from the far left */
+  }
+  50% {
+    transform: translateX(300%); /* Move to the far right */
+  }
+  100% {
+    transform: translateX(-0%); /* End at the far left again */
+  }
+}
+
+.airplane {
+  animation: bounce-airplane 4s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+}
+
+.ticket {
+  animation: bounce-ticket 4.5s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+}
+
+@keyframes bounce-airplane {
+  0% {
+    transform: translateY(0) rotate(-8deg) scale(0);
+    opacity: 0;
+  }
+  15% {
+    transform: translateY(-25px) rotate(-3deg) scale(1);
+    opacity: 1;
+  }
+  35% {
+    transform: translateY(-15px) rotate(2deg) scale(1.05);
+  }
+  55% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  75% {
+    transform: translateY(-10px) rotate(1deg) scale(1.03);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes bounce-ticket {
+  0% {
+    transform: translateY(0) rotate(-5deg) scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(-20px) rotate(3deg) scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-10px) rotate(-2deg) scale(1.05);
+  }
+  60% {
+    transform: translateY(0) rotate(1deg) scale(1);
+  }
+  80% {
+    transform: translateY(-8px) rotate(2deg) scale(1.02);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+.jump {
+  animation: jump 7s ease-in-out infinite;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0); /* Starting position */
+  }
+  25% {
+    transform: translateY(-15px); /* Jump up */
+  }
+  50% {
+    transform: translateY(0); /* Return to original position */
+  }
+  75% {
+    transform: translateY(-10px); /* Small bounce up */
+  }
+  100% {
+    transform: translateY(0); /* Final position */
+  }
+}
+
+
+.hero-mixing{
+  background:black;
+  filter: blur(50px);
+}
+
+.dedicated-team{
+  border-radius: 19px;
+  box-shadow: 0px 1px 3px #a8a8a8;
+}

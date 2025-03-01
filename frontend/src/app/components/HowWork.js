@@ -34,7 +34,7 @@ export default function HowWork() {
 
   return (
     <div className="How-work py-10 ">
-      <div className="px-5 md:px-15 lg:px-20">
+      <div className="px-5 md:px-16 xl:px-32">
         <div className="flex text-center flex-col items-center gap-3 lg:gap-5 py-10">
           <h2 className="text-2xl lg:text-5xl font-bold text-sky-950">How it works</h2>
           <p className=" font-normal  text-gray-700 text-lg  md:text-xl">

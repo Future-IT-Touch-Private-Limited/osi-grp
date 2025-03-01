@@ -10,8 +10,8 @@ import Providers from "./components/Store/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Travel Deals",
-  description: "Travel Deals",
+  title: "OIC Global",
+  description: "OIC GLOBAL Your dream our mission",
 };
 
 export default function RootLayout({ children }) {

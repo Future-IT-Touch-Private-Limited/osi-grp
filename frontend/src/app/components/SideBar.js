@@ -20,14 +20,14 @@ import { MdOutlineErrorOutline } from "react-icons/md";
 import { FiUsers } from "react-icons/fi";
 import { TbBuildingEstate } from "react-icons/tb";
 
-const SideBar = ({ toggler }) => {
+const SideBar = ({ toggler ,setToggler}) => {
   return (
-    <div className="">
+    <div onClick={()=>setToggler(false)} className={`${toggler?"translate-x-0":"translate-x-full "} left-0  absolute  w-screen bg-[rgba(0,0,0,)] flex justify-end h-screen transition-all duration-300 ease-in-out pt-2`}>
       <div
-        className={`SideBar ${
-          toggler ? "-right-[200%] hidden " : "right-0 block"
-        } border w-[100%] sm:w-[60%] md:w-[40%] lg:w-[30%] xl:w-[25%] h-screen top-30 md:top-20 absolute bg-gray-100 text-gray-800 z-50 shadow-2xl transition-all duration-500 ease-in-out md:rounded-l-2xl p-6`}
+        className={`SideBar  border w-[100%] sm:w-[60%] md:w-[40%] lg:w-[30%] xl:w-[25%] h-screen top-30   bg-[#FAF5EE] text-gray-800 z-50 s   p-6`}
       >
+        <div className="flex justify-end">
+        </div>
         <div className="side-bar-content px-2 py-3 flex flex-col gap-5 md:gap-3">
           <div className="singleContent flex gap-2 items-center cursor-pointer">
             <div>
@@ -91,12 +91,14 @@ const SideBar = ({ toggler }) => {
           <div className="mb-1 md:mb-8 text-center py-14 bgAdresssLogo relative text-md font-bold text-zinc-950">
             <div className="flex flex-col md:flex-row md:justify-center  items-center gap-3 text-gray-600 mb-3">
               <FaPhoneAlt />
-              <span>99150 48409</span>
+              <a href="tel:+917508575015" className="hover:text-gray-700">
+        +91 7508575015
+      </a>
             </div>
             <div className="flex flex-col items-center md:flex-row md:items-start justify-center    gap-3 text-gray-600">
               <FaMapMarkerAlt className="mt-1" />
               <span>
-              SCO 45, FIRST FIRST, CITY HEART, SECTOR 125, MOHALI
+              SCO-327,1st floor, Sector 40D, Chandigarh
               </span>
             </div>
           </div>

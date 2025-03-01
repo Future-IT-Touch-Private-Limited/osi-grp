@@ -23,7 +23,7 @@ useEffect(()=>{setreviewdata(state.data)},[state])
 
   return (
     <div className="TestiMonial bg-gradient-to-b from-[#FAFAFA] to-[#3879ab17] py-10">
-      <div className="px-5 md:px-15 lg:px-20">
+      <div className="px-5 md:px-16 lg:px-32">
         <div className="flex flex-col gap-5 lg:gap-8 items-center">
           <div className="text-3xl lg:text-6xl text-[#FFD216] flex gap-3 lg:gap-5">
             <BsFillStarFill />
@@ -44,7 +44,7 @@ useEffect(()=>{setreviewdata(state.data)},[state])
                 width={120}
                 height={120}
                 alt="waitt for img"
-              />{" "}
+              />
               <span>reviews.</span>
             </div>
           </div>
