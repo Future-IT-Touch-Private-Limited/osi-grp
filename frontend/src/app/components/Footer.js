@@ -1,9 +1,25 @@
 "use client";
 import Image from "next/image";
+import {useEffect} from 'react'
 import TravelDesination from "./TravelDesination";
 import Link from "next/link";
 
+
+import { getCountry } from "../components/Store/Slices/countryslices";
+
+import { useDispatch, useSelector } from "react-redux";
 export default function Footer() {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.countryslices);
+    useEffect(() => {
+  
+      dispatch(getCountry());
+    }, []);
+
+
+
+
+
   const countries = [
     { name: "France", href: "/blog/france" },
     { name: "Turkey", href: "/blog/turkey" },
@@ -61,8 +77,8 @@ export default function Footer() {
   ];
   
 
-
-
+//Countryname
+  console.log('state',state.data)
   return (
       <div className="Footer relative     mt-16 md:mt-40  ">
 
@@ -148,9 +164,9 @@ export default function Footer() {
     style={{ gridTemplateColumns: "repeat(auto-fit, minmax(10%, 1fr))" }}
   >
    
-    {countries.map((elm,index)=>{
-      return  ( <Link key={index} className="shrink-0 gap-x-3" href={elm.href}>
-      {elm.name}<span className="mx-2">•</span>
+    {state.data.map((elm,index)=>{
+      return  ( <Link key={index} className="shrink-0 gap-x-3" href={`/${elm.slug}`}>
+      {elm.Countryname}<span className="mx-2">•</span>
     </Link>)
     })}
   </ul>

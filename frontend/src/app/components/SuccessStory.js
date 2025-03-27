@@ -32,24 +32,24 @@ export default function SuccessStory() {
   const VisaAndTravelsTeam = [
   
     {
-      img: "/img/team/Harvindersingh.webp",
+      img: "/img/team/Harvinder.jpeg",
       name: "Harvinder singh ",
       position: "Manager",
     },
     {
       img: "/img/team/Bhupindersingh.webp",
-      name: "Bhupinder singh",
-      position: "Manager",
+      name: "Amritpal singh",
+      position: "Uk Team Leader",
     },
     {
       img: "/img/team/Manpreet.webp",
       name: "Manpreet singh",
-      position: "Manager",
+      position: "Tour & Travel Team Leader",
     },
     {
       img: "/img/team/Amritpal.webp",
-      name: "Amritpal singh",
-      position: "Manager",
+      name: "Bhupinder singh",
+      position: "USA Team Leader",
     },
     {
       img: "/img/team/Kuldeeep.webp",
