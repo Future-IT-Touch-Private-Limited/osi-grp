@@ -32,7 +32,7 @@ export default function SuccessStory() {
   const VisaAndTravelsTeam = [
   
     {
-      img: "/img/team/Harvinder.jpeg",
+      img: "/img/harvinder-singh.jpeg",
       name: "Harvinder singh ",
       position: "Manager",
     },
@@ -53,9 +53,27 @@ export default function SuccessStory() {
     },
     {
       img: "/img/team/Kuldeeep.webp",
-      name: "Kuldeeep Kaur ",
+      name: "Kuldeep Kaur ",
       position: "Manager",
     },
+
+    {
+      img: "/img/⁠priti-thakur.jpeg",
+ 
+      position: "Finland Team leader",
+    },
+    {
+      img: "/img/amritpal-singh.jpeg",
+      name: "Amritpal Singh ",
+      position: "UK Team Leader",
+    },
+
+    {
+      img: "/img/anmol.jpeg",
+      name: "Anmol",
+      position: "Finland Team Leader",
+    },
+
   ];
 
   const [showDec, setShowDec] = useState(110);

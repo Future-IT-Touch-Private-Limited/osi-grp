@@ -128,28 +128,28 @@ export default function Footer() {
           </div>
          <div className="flex justify-between md:hidden">  
           <div className="flex flex-col gap-5">
-            <h6>FAQs</h6>
-            <h6 className="cursor-pointer">About us</h6>
+            {/* <h6>FAQs</h6> */}
+            {/* <h6 className="cursor-pointer">About us</h6>
             <h6>Contact us</h6>
-            <h6>Blogs</h6>
+            <h6>Blogs</h6> */}
           </div>
           <div className="flex flex-col gap-5">
-            <h6>Privacy Policy</h6>
-            <h6>Refund & cancellation policy</h6>
+            {/* <h6>Privacy Policy</h6>
+            <h6>Refund & cancellation policy</h6> 
             <h6>Pricing</h6>
-            <h6>Terms & conditions</h6>
+            <h6>Terms & conditions</h6> */}
           </div>
           </div>
           <div className="hidden md:flex flex-col gap-5">
-            <h6>FAQs</h6>
+            {/* <h6>FAQs</h6> */}
             <a href="/about" className="cursor-pointer">About us</a>
             <a href="/contact">Contact us</a>
             <a href="/blog" className="cursor-pointerr">Blogs</a>
           </div>
           <div className="hidden md:flex flex-col gap-5 cursor-pointer">
             {/* <h6>Privacy Policy</h6> */}
-            <h6>Refund & cancellation policy</h6>
-            <h6>Pricing</h6>
+            {/* <h6>Refund & cancellation policy</h6> */}
+            {/* <h6>Pricing</h6> */}
             {/* <h6>Terms & conditions</h6> */}
           </div> 
         </div>
