@@ -75,7 +75,24 @@ const Navbar = () => {
           alt="Site Logo"
         />
     </Link>
-          <div className="flex gap-1 md:gap-1 items-center">
+            <div className="flex gap-1 md:gap-1 items-center">
+              <ul className="hidden lg:flex items-center gap-x-4 capitalize">
+              <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/about">about</Link>
+            </li>
+            <li>
+              <Link href="/blog">blog</Link>
+            </li>
+            <li>
+              <Link href="/contact">contact</Link>
+            </li>
+            <li>
+              <Link href="/service">service</Link>
+            </li>
+              </ul>
             <div className="hidden md:flex">
               <div className="px-4 py-1 rounded-full flex gap-2 items-center md:text-nowrap" >
                 <figure>
@@ -119,7 +136,7 @@ const Navbar = () => {
 
               <div
                 onClick={() => setToggler(!toggler)}
-                className="bg-[#ffff] text-black  cursor-pointer font-bold p-3 rounded-full"
+                className="bg-[#ffff] lg:hidden text-black  cursor-pointer font-bold p-3 rounded-full"
               >
                 <LuMenu />
               </div>
@@ -174,6 +191,23 @@ const Navbar = () => {
         />
     </Link>
           <div className="flex gap-1 md:gap-1 items-center">
+          <ul className="hidden lg:flex items-center gap-x-4 capitalize">
+              <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/about">about</Link>
+            </li>
+            <li>
+              <Link href="/blog">blog</Link>
+            </li>
+            <li>
+              <Link href="/contact">contact</Link>
+            </li>
+            <li>
+              <Link href="/service">service</Link>
+            </li>
+              </ul>
             <div className="hidden md:flex">
               <div className="px-4 py-1 rounded-full flex gap-2 items-center md:text-nowrap" >
                 <figure>
@@ -217,7 +251,7 @@ const Navbar = () => {
 
               <div
                 onClick={() => setToggler(!toggler)}
-                className="bg-[#ffff] text-black  cursor-pointer font-bold p-3 rounded-full"
+                className="bg-[#ffff] text-black  lg:hidden cursor-pointer font-bold p-3 rounded-full"
               >
                 <LuMenu />
               </div>

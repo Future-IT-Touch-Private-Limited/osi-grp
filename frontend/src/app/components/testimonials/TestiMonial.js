@@ -36,7 +36,7 @@ useEffect(()=>{setreviewdata(state.data)},[state])
             <h2>The 5 star visa company</h2>
           </div>
           <div className="flex gap-2  text-xl font-light">
-            <h6>Teleport is a top rated visa company, on </h6>
+            <h6>OIC GLOBAL is a top rated visa company, on </h6>
             <div className="flex items-center gap-2">
               <img
                 className="h-5 w-5"

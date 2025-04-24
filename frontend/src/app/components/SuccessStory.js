@@ -30,7 +30,7 @@ export default function SuccessStory() {
   const nextRef = useRef(null); // Ref for the next button
 
   const VisaAndTravelsTeam = [
-  
+    
     {
       img: "/img/harvinder-singh.jpeg",
       name: "Harvinder singh ",
@@ -59,7 +59,8 @@ export default function SuccessStory() {
 
     {
       img: "/img/⁠priti-thakur.jpeg",
- 
+      name: "Priti Thakur",
+
       position: "Finland Team leader",
     },
     {
@@ -72,6 +73,22 @@ export default function SuccessStory() {
       img: "/img/anmol.jpeg",
       name: "Anmol",
       position: "Finland Team Leader",
+    },
+
+    {
+      img: "/img/manvir.webp",
+      name: "Manvir singh",
+      position:"Business partner",
+    },
+    {
+      img: "/img/jagman.webp",
+      name: "Jagman Kaur",
+      position:"Business partner",
+    },
+    {
+      img: "/img/gurmel_page-0001.webp",
+      name: "Gurmel Singh",
+      position:"Business partner",
     },
 
   ];
