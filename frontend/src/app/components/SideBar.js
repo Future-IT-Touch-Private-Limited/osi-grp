@@ -1,5 +1,6 @@
-"use clinet";
+"use client";
 import React from "react";
+import { useState } from "react";
 import {
   FaHome,
   FaInfoCircle,
@@ -13,7 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { BsBuildings } from "react-icons/bs";
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { MdOutlineSupportAgent } from "react-icons/md";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { MdOutlineErrorOutline } from "react-icons/md";
@@ -22,14 +23,26 @@ import { TbBuildingEstate } from "react-icons/tb";
 import { FaHouse } from "react-icons/fa6";
 import { LuReplaceAll } from "react-icons/lu";
 
+
 const SideBar = ({ toggler ,setToggler}) => {
+  const [mobileDropdown, setMobileDropdown] = useState(false); // for mobile
+  const serviceData = [
+    { Countryname: "Canada", image: "/img/service/1.webp", service: "Study Visa" },
+    { Countryname: "Australia", image: "/img/service/2.webp", service: "Visitor visa" },
+    { Countryname: "United Kingdom", image: "/img/service/3.webp", service: "Super visa" },
+    { Countryname: "New Zealand", image: "/img/service/4.webp", service: "Post Graduate work permit" },
+    { Countryname: "Canada", image: "/img/service/5.webp", service: "Visitor Visa extension" },
+    { Countryname: "Canada", image: "/img/service/6.webp", service: "Visitor to study oy for canada" },
+    { Countryname: "Canada", image: "/img/service/7.webp", service: "Spouse open work permit" },
+    { Countryname: "United Kingdom", image: "/img/service/8.webp", service: "Tour and travel" },
+    { Countryname: "Australia", image: "/img/service/9.webp", service: "Air ticketing" },
+  ];
   return (
-    <div onClick={()=>setToggler(false)} className={`${toggler?"translate-x-0":"translate-x-full "} left-0  absolute  w-screen bg-[rgba(0,0,0,)] flex justify-end h-screen transition-all duration-300 ease-in-out pt-2 lg:hidden`}>
+    <div  className={`${toggler?"translate-x-0":"translate-x-full "} left-0  absolute  w-screen bg-[rgba(0,0,0,)] flex justify-end h-screen transition-all duration-300 ease-in-out pt-2 lg:hidden`}>
       <div
         className={`SideBar  border w-[100%] sm:w-[60%] md:w-[40%] lg:w-[30%] xl:w-[25%] h-screen top-30   bg-[#FAF5EE] text-gray-800 z-50 s   p-6`}
       >
-        <div className="flex justify-end">
-        </div>
+       
         <div className="side-bar-content px-2 py-3 flex flex-col gap-5 md:gap-3">
           <div className="singleContent flex gap-2 items-center cursor-pointer">
             <div>
@@ -83,18 +96,41 @@ const SideBar = ({ toggler ,setToggler}) => {
               <IoIosArrowForward />
             </div>
           </Link>
-          <Link
-            href={"/service"}
-            className="singleContent flex gap-2 items-center cursor-pointer  "
-          >
-            <div>
-              <LuReplaceAll  className="rotate-180" />
-            </div>
-            <div className="flex  justify-between items-center  w-full px-3 py-2 border-b-2">
-              <h2>service</h2>
-              <IoIosArrowForward />
-            </div>
-          </Link>
+
+
+       
+
+
+          <div className="lg:hidden">
+        <div
+          className="singleContent flex gap-2 items-center cursor-pointer"
+          onClick={() => setMobileDropdown(!mobileDropdown)}
+        >
+          <div>
+            <LuReplaceAll className="rotate-180" />
+          </div>
+          <div className="flex justify-between items-center w-full px-3 py-2 border-b-2">
+            <h2>service</h2>
+            {mobileDropdown ? <IoIosArrowDown /> : <IoIosArrowForward />}
+          </div>
+        </div>
+
+        {mobileDropdown && (
+          <ul className="pl-10 space-y-4 text-base py-2  text-gray-700  mt-2">
+            {serviceData.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={`/service/${item.service.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="block hover:text-blue-500 border-b-2"
+                >
+                  {item.service}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
 
           <a href="tel:+917508575015" className="singleContent flex gap-2 items-center cursor-pointer ">
             <div>
