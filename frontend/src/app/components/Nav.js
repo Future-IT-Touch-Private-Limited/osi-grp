@@ -86,12 +86,7 @@ const Navbar = () => {
                   <li>
                     <Link href="/about">about</Link>
                   </li>
-                  <li>
-                    <Link href="/blog">blog</Link>
-                  </li>
-                  <li>
-                    <Link href="/contact">contact</Link>
-                  </li>
+                  
                   <li
         onMouseEnter={() => setShowDropdown(true)}
         onMouseLeave={() => setShowDropdown(false)}
@@ -115,6 +110,12 @@ const Navbar = () => {
           </ul>
         )}
       </li>
+      <li>
+                    <Link href="/blog">blog</Link>
+                  </li>
+                  <li>
+                    <Link href="/contact">contact</Link>
+                  </li>
                 </ul>
                 <div className="hidden md:flex">
                   <div className="px-4 py-1 rounded-full flex gap-2 items-center md:text-nowrap">
@@ -222,12 +223,7 @@ const Navbar = () => {
                   <li>
                     <Link href="/about">about</Link>
                   </li>
-                  <li>
-                    <Link href="/blog">blog</Link>
-                  </li>
-                  <li>
-                    <Link href="/contact">contact</Link>
-                  </li>
+                 
                   <li
         onMouseEnter={() => setShowDropdown(true)}
         onMouseLeave={() => setShowDropdown(false)}
@@ -251,6 +247,13 @@ const Navbar = () => {
           </ul>
         )}
       </li>
+
+      <li>
+                    <Link href="/blog">blog</Link>
+                  </li>
+                  <li>
+                    <Link href="/contact">contact</Link>
+                  </li>
                 </ul>
                 <div className="hidden md:flex">
                   <div className="px-4 py-1 rounded-full flex gap-2 items-center md:text-nowrap">
