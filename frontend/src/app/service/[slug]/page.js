@@ -14,6 +14,8 @@ import { serviceData } from '@/app/serviceData';
     ))
 }
 
+
+
 export default function page({params:{slug}}) {
     const singleService=serviceData.find((elm)=>elm.service.toLowerCase().split(" ").join("-")==slug)
   return (

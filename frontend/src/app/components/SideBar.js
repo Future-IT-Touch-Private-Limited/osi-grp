@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import {
   FaHome,
@@ -24,7 +24,24 @@ import { FaHouse } from "react-icons/fa6";
 import { LuReplaceAll } from "react-icons/lu";
 
 
+
+
 const SideBar = ({ toggler ,setToggler}) => {
+
+  useEffect(() => {
+    if (toggler) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [toggler]);
+  
+
+  
   const [mobileDropdown, setMobileDropdown] = useState(false); // for mobile
   const serviceData = [
     { Countryname: "Canada", image: "/img/service/1.webp", service: "Study Visa" },
@@ -37,6 +54,20 @@ const SideBar = ({ toggler ,setToggler}) => {
     { Countryname: "United Kingdom", image: "/img/service/8.webp", service: "Tour and travel" },
     { Countryname: "Australia", image: "/img/service/9.webp", service: "Air ticketing" },
   ];
+  const studyVisaCountries = [
+    { name: "UK" },
+    { name: "Canada" },
+    { name: "USA" },
+    { name: "Germany" },
+    { name: "Australia" },
+    { name: "Finland" },
+    { name: "Cyprus" },
+    { name: "Sweden" },
+    { name: "Denmark" },
+    { name: "New Zealand" },
+  ];
+
+  const [studyOpen,setStudyOpen]=useState(false)
   return (
     <div  className={`${toggler?"translate-x-0":"translate-x-full "} left-0  absolute  w-screen bg-[rgba(0,0,0,)] flex justify-end h-screen transition-all duration-300 ease-in-out pt-2 lg:hidden`}>
       <div
@@ -51,6 +82,7 @@ const SideBar = ({ toggler ,setToggler}) => {
             </div>
             <Link
               href={"/"}
+              onClick={()=>setToggler(false)}
               className="flex  justify-between items-center  w-full px-3 py-2 border-b-2"
             >
               <h2>Home</h2>
@@ -63,6 +95,8 @@ const SideBar = ({ toggler ,setToggler}) => {
             </div>
             <Link
               href={"/contact"}
+              onClick={()=>setToggler(false)}
+
               className="flex  justify-between items-center  w-full px-3 py-2 border-b-2"
             >
               <h2>Contact Us</h2>
@@ -78,6 +112,8 @@ const SideBar = ({ toggler ,setToggler}) => {
             </div>
             <Link 
               href="/blog"
+              onClick={()=>setToggler(false)}
+
              className="flex  justify-between items-center  w-full px-3 py-2 border-b-2  ">
               <h2>Visa Blog</h2>
               <IoIosArrowForward />
@@ -86,6 +122,8 @@ const SideBar = ({ toggler ,setToggler}) => {
 
           <Link
             href={"/about"}
+            onClick={()=>setToggler(false)}
+
             className="singleContent flex gap-2 items-center cursor-pointer  "
           >
             <div>
@@ -98,6 +136,40 @@ const SideBar = ({ toggler ,setToggler}) => {
           </Link>
 
 
+          <div className="lg:hidden study-abraod">
+        <div
+          className="singleContent flex gap-2 items-center cursor-pointer"
+          onClick={() => setStudyOpen(!studyOpen)}
+        >
+          <div>
+            <LuReplaceAll className="rotate-180" />
+          </div>
+          <div className="flex justify-between items-center w-full px-3 py-2 border-b-2">
+            <h2>Study Abroad</h2>
+            {studyOpen ? <IoIosArrowDown /> : <IoIosArrowForward />}
+          </div>
+        </div>
+
+        {studyOpen && (
+          <ul className="pl-10 space-y-4 text-base py-2  text-gray-700  mt-2">
+            {studyVisaCountries.map((item, index) => (
+              <li key={index}>
+                <Link
+                    href={`/${item.name
+                                  .toLowerCase()
+                                  .split(" ")
+                                  .join("-")}`}
+                                  onClick={()=>setToggler(false)}
+
+                  className="block hover:text-blue-500 border-b-2"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
        
 
 
@@ -121,6 +193,8 @@ const SideBar = ({ toggler ,setToggler}) => {
               <li key={index}>
                 <Link
                   href={`/service/${item.service.toLowerCase().replace(/\s+/g, "-")}`}
+                  onClick={()=>setToggler(false)}
+
                   className="block hover:text-blue-500 border-b-2"
                 >
                   {item.service}
@@ -148,6 +222,8 @@ const SideBar = ({ toggler ,setToggler}) => {
             <div>
               <Link
                 href="/login"
+                onClick={()=>setToggler(false)}
+
                 className=" md:hidden text-white text-xs font-bold bg-[#006251] px-3 py-2  rounded"
               >
                 Login

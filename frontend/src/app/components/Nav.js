@@ -12,8 +12,9 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 import { serviceData } from "@/app/serviceData";
+import TopNav from "./TopNav";
+import BookNowPop from "./BookNowPop";
 const Navbar = () => {
-  
   const [showDropdown, setShowDropdown] = useState(false);
 
   const [toggler, setToggler] = useState(false);
@@ -59,85 +60,130 @@ const Navbar = () => {
     router.push("/");
   };
   console.log(pathname, "check");
+
+  const [studyAbroad, setAbroad] = useState(false);
+
+  const studyVisaCountries = [
+    { name: "UK" },
+    { name: "Canada" },
+    { name: "USA" },
+    { name: "Germany" },
+    { name: "Australia" },
+    { name: "Finland" },
+    { name: "Cyprus" },
+    { name: "Sweden" },
+    { name: "Denmark" },
+    { name: "New Zealand" },
+  ];
+
+  const [popOpen, setPopOpen] = useState(false);
+
   return (
     <>
-      {pathname === "/" ? (
-        <div
-          className={`NavParent fixed top-0 w-full  z-[10000000]   px-5  md:px-16 xl:px-32 py-2  xl:py-2 ${
-            isScrolled
-              ? "fixed top-0 left-0 w-full bg-[#FAF5EE]  md:bg-[#FAF5EE] text-white  md:text-black border  border-white/20  z-50  "
-              : "text-black bg-[#FAF5EE] lg:bg-transparent  lg:text-white "
-          } `}
-        >
-          <div className="flex flex-col md:gap-2">
-            <div className="flex justify-between md:gap-2 items-center">
-              <Link href="/" className=" ">
-                <img
-                  className="h-[50px] lg:h-[65px] object-cover -translate-x-3 md:-translate-x-5"
-                  src="/img/newSiteEditLogo.png"
-                  alt="Site Logo"
-                />
-              </Link>
-              <div className="flex gap-1 md:gap-1 items-center">
-                <ul className="hidden lg:flex items-center gap-x-4 capitalize">
-                  <li>
-                    <Link href="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link href="/about">about</Link>
-                  </li>
-                  <li>
-                    <Link href="/blog">blog</Link>
-                  </li>
-                  <li>
-                    <Link href="/contact">contact</Link>
-                  </li>
-                  <li
-        onMouseEnter={() => setShowDropdown(true)}
-        onMouseLeave={() => setShowDropdown(false)}
-        className="relative flex items-center gap-x-1 cursor-pointer"
-      >
-       service <IoIosArrowDown className={`${showDropdown?"rotate-180":""}`} />
+      <BookNowPop popOpen={popOpen} setPopOpen={setPopOpen} />
 
-        {showDropdown && (
-          <ul className="absolute top-full left-0 bg-white shadow-lg w-64 rounded z-50 text-sm text-gray-700">
-            {serviceData.map((item, index) => (
-              <li key={index} className="border-b last:border-none hover:bg-gray-100 transition-colors">
-                <Link
-                  href={`/service/${item.service.toLowerCase().split(" ").join("-")}`}
-                  className="flex items-center px-4 py-2 gap-2"
-                >
-                  <img src={item.image} alt={item.service} className="w-6 h-6 object-cover rounded" />
-                  <span>{item.service}</span>
+      <TopNav setPopOpen={setPopOpen} />
+
+          <div
+            className={`NavParent sticky top-0 w-full  z-[10000000]   px-5  md:px-16 xl:px-32 py-2  xl:py-2 ${
+              isScrolled
+                ? "fixed top-0 left-0 w-full bg-[#FAF5EE]  md:bg-[#FAF5EE  md:text-black border  border-white/20  z-50  "
+                : "text-black bg-[#FAF5EE] lg:bg-[#FAF5EE] "
+            } `}
+          >
+            <div className="flex flex-col md:gap-2">
+              <div className="flex justify-between md:gap-2 items-center">
+                <Link href="/" className=" ">
+                  <img
+                    className="h-[50px] lg:h-[65px] object-cover -translate-x-3 md:-translate-x-5"
+                    src="/img/newSiteEditLogo.png"
+                    alt="Site Logo"
+                  />
                 </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </li>
-                </ul>
-                <div className="hidden md:flex">
-                  <div className="px-4 py-1 rounded-full flex gap-2 items-center md:text-nowrap">
-                    <figure>
-                      <img
-                        className="w-7 h-7"
-                        src="/img/asset 2.svg"
-                        width={120}
-                        height={120}
-                        alt="Chat Icon"
+                <div className="flex gap-1 md:gap-1 items-center">
+                  <ul className="hidden lg:flex items-center gap-x-4 capitalize">
+                    <li>
+                      <Link href="/">Home</Link>
+                    </li>
+                    <li>
+                      <Link href="/about">about</Link>
+                    </li>
+                    <li
+                      onMouseEnter={() => setAbroad(true)}
+                      onMouseLeave={() => setAbroad(false)}
+                      className="relative flex items-center gap-x-1 cursor-pointer"
+                    >
+                      Study Abroad{" "}
+                      <IoIosArrowDown
+                        className={`${showDropdown ? "rotate-180" : ""}`}
                       />
-                    </figure>
-                    <Link href="tel:75085 75015">
-                      <span className="opacity-80">Chat With us</span>
-                    </Link>
-                  </div>
-                  <div className="hidden md:flex md:text-nowrap px-4 py-1 rounded-full  gap-2 items-center">
-                    <FaPhoneAlt className="= lg:text-xl" />
+                      {studyAbroad && (
+                        <ul className="absolute top-full left-0 bg-white shadow-lg w-64 rounded z-50 text-sm text-gray-700">
+                          {studyVisaCountries.map((item, index) => (
+                            <li
+                              key={index}
+                              className="border-b last:border-none hover:bg-gray-100 transition-colors"
+                            >
+                              <Link
+                                href={`/${item.name
+                                  .toLowerCase()
+                                  .split(" ")
+                                  .join("-")}`}
+                                className="flex items-center px-4 py-2 gap-2"
+                              >
+                                {/* <img src={item.image} alt={item.service} className="w-6 h-6 object-cover rounded" /> */}
+                                <span className="text-gray-700">
+                                  {item.name}
+                                </span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
 
-                    <a href="tel:+75085 75015">
-                      <span className="opacity-80  ">+91 75085 75015</span>
-                    </a>
-                  </div>
+                    <li
+                      onMouseEnter={() => setShowDropdown(true)}
+                      onMouseLeave={() => setShowDropdown(false)}
+                      className="relative flex items-center gap-x-1 cursor-pointer"
+                    >
+                      service{" "}
+                      <IoIosArrowDown
+                        className={`${showDropdown ? "rotate-180" : ""}`}
+                      />
+                      {showDropdown && (
+                        <ul className="absolute top-full left-0 bg-white shadow-lg w-64 rounded z-50 text-sm text-gray-700">
+                          {serviceData.map((item, index) => (
+                            <li
+                              key={index}
+                              className="border-b last:border-none hover:bg-gray-100 transition-colors"
+                            >
+                              <Link
+                                href={`/service/${item.service
+                                  .toLowerCase()
+                                  .split(" ")
+                                  .join("-")}`}
+                                className="flex items-center px-4 py-2 gap-2"
+                              >
+                                <img
+                                  src={item.image}
+                                  alt={item.service}
+                                  className="w-6 h-6 object-cover rounded"
+                                />
+                                <span>{item.service}</span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                    <li>
+                      <Link href="/blog">blog</Link>
+                    </li>
+                    <li>
+                      <Link href="/contact">contact us</Link>
+                    </li>
+                  </ul>
                 </div>
                 <div className="flex items-center gap-5">
                   {!userId ? (
@@ -165,175 +211,38 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Mobile Contact Section */}
-            <div className="flex md:hidden justify-between">
-              <div className="hidden md:flex gap-2 items-center">
-                <figure>
-                  <img
-                    className="w-full"
-                    src="/img/asset 2.svg"
-                    width={120}
-                    height={120}
-                    alt="Chat Icon"
-                  />
-                </figure>
-                <span className="opacity-80 text-md">Chat With Us</span>
-              </div>
-              <div className="hidden md:flex gap-2 items-center">
-                <figure>
-                  <img
-                    className="w-full"
-                    src="/img/asset 3.svg"
-                    width={120}
-                    height={120}
-                    alt="Phone Icon"
-                  />
-                </figure>
-                <span className="opacity-80">+9175085 75015 </span>
-              </div>
-            </div>
-          </div>
-          <SideBar toggler={toggler} setToggler={setToggler} />
-        </div>
-      ) : (
-        <div
-          className={`NavParent sticky top-0 w-full  z-[10000000]   px-5  md:px-16 xl:px-32 py-2  xl:py-2 ${
-            isScrolled
-              ? "fixed top-0 left-0 w-full bg-[#FAF5EE]  md:bg-[#FAF5EE  md:text-black border  border-white/20  z-50  "
-              : "text-black bg-[#FAF5EE] lg:bg-[#FAF5EE] "
-          } `}
-        >
-          <div className="flex flex-col md:gap-2">
-            <div className="flex justify-between md:gap-2 items-center">
-              <Link href="/" className=" ">
-                <img
-                  className="h-[50px] lg:h-[65px] object-cover -translate-x-3 md:-translate-x-5"
-                  src="/img/newSiteEditLogo.png"
-                  alt="Site Logo"
-                />
-              </Link>
-              <div className="flex gap-1 md:gap-1 items-center">
-                <ul className="hidden lg:flex items-center gap-x-4 capitalize">
-                  <li>
-                    <Link href="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link href="/about">about</Link>
-                  </li>
-                  <li>
-                    <Link href="/blog">blog</Link>
-                  </li>
-                  <li>
-                    <Link href="/contact">contact</Link>
-                  </li>
-                  <li
-        onMouseEnter={() => setShowDropdown(true)}
-        onMouseLeave={() => setShowDropdown(false)}
-        className="relative cursor-pointer flex items-center gap-x-1"
-      >
-       service <IoIosArrowDown className={`${showDropdown?"rotate-180":""}`} />
-
-        {showDropdown && (
-          <ul className="absolute top-full left-0 bg-white shadow-lg w-64 rounded z-50 text-sm text-gray-700">
-            {serviceData.map((item, index) => (
-              <li key={index} className="border-b last:border-none hover:bg-gray-100 transition-colors">
-                <Link
-                  href={`/service/${item.service.toLowerCase().split(" ").join("-")}`}
-                  className="flex items-center px-4 py-2 gap-2"
-                >
-                  <img src={item.image} alt={item.service} className="w-6 h-6 object-cover rounded" />
-                  <span>{item.service}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </li>
-                </ul>
-                <div className="hidden md:flex">
-                  <div className="px-4 py-1 rounded-full flex gap-2 items-center md:text-nowrap">
-                    <figure>
-                      <img
-                        className="w-7 h-7"
-                        src="/img/asset 2.svg"
-                        width={120}
-                        height={120}
-                        alt="Chat Icon"
-                      />
-                    </figure>
-                    <Link href="tel:75085 75015">
-                      <span className="opacity-80">Chat With us</span>
-                    </Link>
-                  </div>
-                  <div className="hidden md:flex md:text-nowrap px-4 py-1 rounded-full  gap-2 items-center">
-                    <FaPhoneAlt className="= lg:text-xl" />
-
-                    <a href="tel:+91 75085 75015">
-                      <span className="opacity-80  ">+91 75085 75015</span>
-                    </a>
-                  </div>
+              {/* Mobile Contact Section */}
+              <div className="flex md:hidden justify-between">
+                <div className="hidden md:flex gap-2 items-center">
+                  <figure>
+                    <img
+                      className="w-full"
+                      src="/img/asset 2.svg"
+                      width={120}
+                      height={120}
+                      alt="Chat Icon"
+                    />
+                  </figure>
+                  <span className="opacity-80 text-md">Chat With Us</span>
                 </div>
-                <div className="flex items-center gap-5">
-                  {!userId ? (
-                    <Link
-                      href="/login"
-                      className="hidden md:block text-white font-bold bg-gradient-to-t from-blue-800 to-blue-800 px-3 py-2 md:px-5 md:py-2 rounded"
-                    >
-                      Login
-                    </Link>
-                  ) : (
-                    <div className="flex items-center space-x-4">
-                      <FaUserCircle className="text-black text-3xl cursor-pointer" />
-                      <FaSignOutAlt
-                        className="text-black text-2xl cursor-pointer"
-                        onClick={handleLogout}
-                      />
-                    </div>
-                  )}
-
-                  <div
-                    onClick={() => setToggler(!toggler)}
-                    className="bg-[#ffff] text-black  lg:hidden cursor-pointer font-bold p-3 rounded-full"
-                  >
-                    <LuMenu />
-                  </div>
+                <div className="hidden md:flex gap-2 items-center">
+                  <figure>
+                    <img
+                      className="w-full"
+                      src="/img/asset 3.svg"
+                      width={120}
+                      height={120}
+                      alt="Phone Icon"
+                    />
+                  </figure>
+                  <span className="opacity-80">+91 75085 75015 </span>
                 </div>
               </div>
             </div>
-
-            {/* Mobile Contact Section */}
-            <div className="flex md:hidden justify-between">
-              <div className="hidden md:flex gap-2 items-center">
-                <figure>
-                  <img
-                    className="w-full"
-                    src="/img/asset 2.svg"
-                    width={120}
-                    height={120}
-                    alt="Chat Icon"
-                  />
-                </figure>
-                <span className="opacity-80 text-md">Chat With Us</span>
-              </div>
-              <div className="hidden md:flex gap-2 items-center">
-                <figure>
-                  <img
-                    className="w-full"
-                    src="/img/asset 3.svg"
-                    width={120}
-                    height={120}
-                    alt="Phone Icon"
-                  />
-                </figure>
-                <span className="opacity-80">+91 75085 75015 </span>
-              </div>
-            </div>
+            <SideBar toggler={toggler} setToggler={setToggler} />
           </div>
-          <SideBar toggler={toggler} setToggler={setToggler} />
-        </div>
-      )}
+     
     </>
   );
 };

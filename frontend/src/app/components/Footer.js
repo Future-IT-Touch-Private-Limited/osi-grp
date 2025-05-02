@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TravelDesination from "./TravelDesination";
 import Link from "next/link";
 import { RiInstagramFill } from "react-icons/ri";
@@ -110,6 +110,8 @@ export default function Footer() {
     { name: "Denmark" },
     { name: "New Zealand" },
   ];
+
+
   return (
     <div className="Footer relative     mt-16 md:mt-40  ">
       <div className="pt-5  xl:pt-20 bg-cover bg-center   bg-[url('/img/successstory-bg.webp')]">
