@@ -24,4 +24,4 @@ export default function page({params:{slug}}) {
   );
 };
 
-export default page;
+
