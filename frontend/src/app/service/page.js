@@ -11,7 +11,7 @@ export default function Page() {
   const [inpuValue, setInpuValue] = useState("");
   const [mainindex, setmainindex] = useState(4);
   const [flagsData, setFlagsData] = useState([]);
-  const storageurl = "https://your-storage-url.com"; // Replace with actual URL
+  const storageurl = "https://your-storage-url.com"; 
 
   return (
     <>
@@ -89,10 +89,7 @@ export default function Page() {
                     return (
                       <Link
                         key={index}
-                        href={`/service/${service
-                          .toLowerCase()
-                          .split(" ")
-                          .join("-")}`}
+                        href={`/service/${Countryname.toLowerCase().split(" ").join("-")}`}
                         className="group overflow-hidden relative card bg-white rounded-xl flex flex-col gap-4 shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105"
                       >
                         <figure className="relative">
@@ -106,7 +103,7 @@ export default function Page() {
                         <div className="absolute inset-0 text-white bg-[rgba(0,0,0,.5)] px-5 py-4 flex items-center justify-center  gap-4">
                           <div className="flex text-center justify-between items-center">
                             <h5 className="text-lg font-bold tracking-tight">
-                              {service}
+                              {Countryname}
                             </h5>
                           </div>
                           <div></div>
