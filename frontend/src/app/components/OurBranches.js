@@ -11,14 +11,14 @@ export default function OurBranches() {
       address: "Sco- 327, first floor, 40D, Sector 40D, Chandigarh, 160039",
     },
     {
-      barnchName: "Derabasi",
+      barnchName: "Dera Bassi",
       address:
-        "#1248, first floor, near Punjab properties, Barwala Road, Derabassi",
+        "#1248, first floor, near Punjab properties, Barwala Road, Dera Bassi",
     },
     {
       barnchName: "Ghanaur",
       address:
-        "OIC GLOBAL GHANAUR (Near Maruti Agency, First Floor Rainbow Cafe)",
+        "OIC Global Ghanaur (Near Maruti Agency, First Floor Rainbow Cafe)",
     },
     {
       barnchName: "Doraha",
@@ -44,23 +44,17 @@ export default function OurBranches() {
           return (
             <div
               key={index}
-              onClick={() => setCurntBranch(index)}
-              className={`h-[240px] sm:h-[260px] p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 flex flex-col items-center justify-center gap-y-3
-                ${
-                  block
-                    ? "bg-[#D92024] text-white"
-                    : "bg-white text-black border-b-4 border-[#D92024]"
-                }
-              `}
+              className={`
+              h-[240px] sm:h-[260px] p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 flex flex-col items-center justify-center gap-y-3 ease-in-out
+              hover:bg-[#D92024] hover:text-white bg-white text-black border-b-4 border-[#D92024] 
+            `}
             >
               <button
-                className={`text-sm sm:text-base md:text-lg font-semibold px-4 py-2 rounded-full transition-all duration-300
-                  ${
-                    block
-                      ? "bg-white text-[#D92024]"
-                      : "border-2 border-[#D92024] text-[#D92024]"
-                  }
-                `}
+                className={`
+                text-sm sm:text-base md:text-lg font-semibold px-4 py-2 rounded-full border-2 border-[#D92024]
+                text-[#D92024] transition-all duration-500 ease-in-out bg-white 
+                
+              `}
               >
                 {elm.barnchName}
               </button>
