@@ -17,7 +17,7 @@ export default function OurBranches() {
     {
       barnchName: "Ghanaur",
       address:
-        "OIC GLOBAL GHANAUR (Near Maruti Agency, First Floor Rainbow Cafe)",
+        "OIC Global Ghanaur (Near Maruti Agency, First Floor Rainbow Cafe)",
     },
     {
       barnchName: "Doraha",
