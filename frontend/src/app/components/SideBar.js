@@ -69,7 +69,7 @@ const SideBar = ({ toggler ,setToggler}) => {
 
   const [studyOpen,setStudyOpen]=useState(false)
   return (
-    <div  className={`${toggler?"translate-x-0":"translate-x-full "} left-0  absolute  w-screen bg-[rgba(0,0,0,)] flex justify-end h-screen transition-all duration-300 ease-in-out pt-2 lg:hidden`}>
+    <div  className={`${toggler?"translate-x-0":"translate-x-full hidden "} left-0  absolute  w-screen bg-[rgba(0,0,0,)] flex justify-end h-screen transition-all duration-300 ease-in-out pt-2 lg:hidden`}>
       <div
         className={`SideBar  border w-[100%] sm:w-[60%] md:w-[40%] lg:w-[30%] xl:w-[25%] h-screen top-30   bg-[#FAF5EE] text-gray-800 z-50 s   p-6`}
       >

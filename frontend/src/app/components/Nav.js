@@ -76,7 +76,7 @@ const Navbar = () => {
     { name: "New Zealand" },
   ];
 
-  const [popOpen, setPopOpen] = useState(false);
+  const [popOpen, setPopOpen] = useState(true);
 
   return (
     <>

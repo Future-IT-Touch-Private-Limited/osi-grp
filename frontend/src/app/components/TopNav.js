@@ -7,7 +7,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 
 
-export default function TopNav() {
+export default function TopNav({setPopOpen}) {
     const SocialIcon = ({ Icon, link }) => (
         <a
           href={link}
