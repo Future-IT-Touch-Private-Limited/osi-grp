@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import TravelDesination from "./TravelDesination";
+// import TravelDesination from "./TravelDesination";
+import ContactInfromation from "./ContactInformation"
 import Link from "next/link";
 import { RiInstagramFill } from "react-icons/ri";
 import { FaFacebook } from "react-icons/fa";
@@ -115,8 +116,8 @@ export default function Footer() {
   return (
     <div className="Footer relative     mt-16 md:mt-40  ">
       <div className="pt-5  xl:pt-20 bg-cover bg-center   bg-[url('/img/successstory-bg.webp')]">
-        <div className="relative -mt-24 md:-mt-36  xl:-mt-40 ">
-          <TravelDesination />
+        <div className="relative -mt-20 md:-mt-36  xl:-mt-56 ">
+          <ContactInfromation />
         </div>
 
         <div className="text-white z-30 relative">
