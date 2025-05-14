@@ -18,10 +18,10 @@ const ContactInfromation = () => {
           <div className="flex items-center gap-4 mt-4">
             <div className="bg-white text-red-600 p-3 rounded-full">
               <FaPhoneAlt className="text-xl" />
-            </div>
+            </div> 
             <h3 className="text-lg md:text-xl font-semibold">
               <a href="tel:+919988003342" className="text-white hover:underline">
-                +91 7508575015
+                +91 7508575015, +91 96092 97092
               </a>
             </h3>
           </div>
