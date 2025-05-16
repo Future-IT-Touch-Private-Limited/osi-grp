@@ -6,7 +6,7 @@ import { FiChevronDown } from "react-icons/fi";
 import { FiChevronUp } from "react-icons/fi";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { serviceData } from "../serviceData";
-export default function ServiceInner({ singleService }) {
+export default function ServiceInner({ service }) {
   const leftFeatures = [
     {
       image: "/images/serviceLeft/1.svg",
@@ -66,7 +66,7 @@ export default function ServiceInner({ singleService }) {
         <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 md:px-16 text-white">
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold mb-4">
-            {singleService.service}
+            {service?.service}
           </h1>
           <p className="text-lg md:text-xl max-w-3xl mb-6">
             At OIC Global, we specialize in delivering tailored immigration,
@@ -153,16 +153,16 @@ export default function ServiceInner({ singleService }) {
           </div>
 
           <div className="lg:col-span-2 space-y-6 lg:space-y-12">
-            <img src={singleService.image} alt={singleService.title} />
+            <img src={service.image} alt={service.title} />
             <div className="space-y-4 lg:space-y-6 text-justify">
-              {singleService.description?.map((elm, index) => (
+              {service.description?.map((elm, index) => (
                 <p key={index}>{elm}</p>
               ))}
             </div>
             <div className="grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-2">
-              <img src={singleService.image} alt={singleService.title} />
+              <img src={service.image} alt={service.title} />
               <div className="space-y-4 lg:space-y-4">
-                {singleService.highlights.map((elm, index) => (
+                {service.highlights.map((elm, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <FaCheckCircle className="text-[#A0A8A2]" />
                     <p>{elm}</p>
@@ -183,7 +183,7 @@ export default function ServiceInner({ singleService }) {
 
               {/* FAQ List */}
               <div className="mt-6 space-y-4">
-                {singleService.faq.map((item, index) => (
+                {service.faq.map((item, index) => (
                   <div key={item.srNo} className="border-b pb-4">
                     <button
                       onClick={() => handleToggle(index)}
