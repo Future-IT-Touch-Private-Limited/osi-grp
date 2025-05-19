@@ -9,7 +9,7 @@ import CounsellingForm from "../components/LandingPage/CounsellingForm";
 import BookNowPop from "../components/LandingPage/BookNowPop";
 import { useState } from "react";
 
-export default function consultancy_chandigarh() {
+export default function ConsultancyChandigarh () {
   const [popOpen, setPopOpen] = useState(true);
   return (
     <div className="font-sans">

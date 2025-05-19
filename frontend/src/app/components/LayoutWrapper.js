@@ -9,7 +9,7 @@ export default function LayoutWrapper({ children }) {
   const pathname = usePathname();
 
   // Define routes where header/footer/whatsapp contact should be hidden
-  const hideLayoutRoutes = ["/consultancy_chandigarh/"]; // add routes as needed
+  const hideLayoutRoutes = ["/consultancyChandigarh/"]; // add routes as needed
   console.log("pathname ",pathname);
   const hideLayout = hideLayoutRoutes.includes(pathname);
 
