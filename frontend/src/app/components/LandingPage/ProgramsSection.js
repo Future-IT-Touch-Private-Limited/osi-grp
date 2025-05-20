@@ -5,6 +5,7 @@ export default function ProgramsSection({ setPopOpen }) {
   const scrollContainerRef = useRef(null);
   const [cardsPerView, setCardsPerView] = useState(3);
   const [cardWidth, setCardWidth] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Determine how many cards should be visible based on screen size
   useEffect(() => {
@@ -12,12 +13,19 @@ export default function ProgramsSection({ setPopOpen }) {
       if (window.innerWidth >= 1024) {
         // lg
         setCardsPerView(3);
+        setIsMobile(false);
       } else if (window.innerWidth >= 768) {
         // md
         setCardsPerView(2);
-      } else {
+        setIsMobile(false);
+      } else if (window.innerWidth >= 640) {
         // sm
-        setCardsPerView(1);
+        setCardsPerView(1.5);
+        setIsMobile(false);
+      } else {
+        // xs
+        setCardsPerView(1.2);
+        setIsMobile(true);
       }
     };
 
@@ -148,24 +156,24 @@ export default function ProgramsSection({ setPopOpen }) {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-8 sm:py-12 md:py-16 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-2 sm:mb-4">
           Select Your Dream Destination
         </h2>
-        <p className="text-center mb-12 text-gray-600 uppercase">
+        <p className="text-sm sm:text-base text-center mb-6 sm:mb-8 md:mb-12 text-gray-600 uppercase">
           We have partnered with over 500 education institutes around the globe
         </p>
 
         <div className="relative">
-          {/* Left Scroll Button */}
+          {/* Left Scroll Button - Hidden on small mobile */}
           <button
             onClick={scrollLeft}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 transition z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-1 sm:p-2 rounded-full shadow-md hover:bg-gray-200 transition z-10"
             aria-label="Scroll left"
           >
             <svg
-              className="w-6 h-6 text-gray-600"
+              className="w-4 h-4 sm:w-6 sm:h-6 text-gray-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -180,22 +188,29 @@ export default function ProgramsSection({ setPopOpen }) {
             </svg>
           </button>
 
+          {/* Instructions for mobile users */}
+          {isMobile && (
+            <div className="text-center text-gray-500 text-sm mb-3">
+              Swipe cards to see more options
+            </div>
+          )}
+
           {/* Responsive Card Container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-8 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-4 mx-12"
+            className="flex gap-4 sm:gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-4 mx-8 sm:mx-10 md:mx-12 touch-pan-x"
           >
             {countries.map((country, index) => (
               <div
                 key={index}
-                className="country-card flex-shrink-0 snap-center border-2 border-black rounded-lg shadow-lg"
+                className="country-card flex-shrink-0 snap-center border border-gray-200 sm:border-2 sm:border-black rounded-lg shadow-md sm:shadow-lg"
                 style={{
                   width: cardWidth > 0 ? `${cardWidth}px` : "100%",
-                  minWidth: cardWidth > 0 ? `${cardWidth}px` : "280px",
+                  minWidth: cardWidth > 0 ? `${cardWidth}px` : "240px",
                   maxWidth: "500px",
                 }}
               >
-                <div className="relative p-6 rounded-lg shadow-lg bg-white overflow-hidden flex flex-col h-full">
+                <div className="relative p-3 sm:p-4 md:p-6 rounded-lg shadow-lg bg-white overflow-hidden flex flex-col h-full">
                   {/* Transparent flag background */}
                   <div
                     className="absolute inset-0 bg-center bg-cover opacity-10 blur-sm"
@@ -206,37 +221,40 @@ export default function ProgramsSection({ setPopOpen }) {
                   <div className="relative z-10 flex flex-col h-full">
                     {/* Image */}
                     <div
-                      className="h-48 bg-cover bg-center rounded-t-lg"
+                      className="h-32 sm:h-40 md:h-48 bg-cover bg-center rounded-t-lg"
                       style={{ backgroundImage: `url('${country.image}')` }}
                     ></div>
 
                     {/* Flag */}
-                    <div className="flex justify-end -mt-10 mr-3 text-4xl">
+                    <div className="flex justify-end -mt-8 sm:-mt-10 mr-2 sm:mr-3 text-3xl sm:text-4xl">
                       {country.flag}
                     </div>
 
                     {/* Content (will grow to fill space) */}
                     <div className="flex-grow">
-                      <h3 className="text-2xl font-bold mt-8 mb-4">
+                      <h3 className="text-xl sm:text-2xl font-bold mt-4 sm:mt-6 md:mt-8 mb-2 sm:mb-4">
                         Study in {country.name}
                       </h3>
-                      <p className="text-gray-600 mb-4">
-                        {country.description}
+                      <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
+                        {isMobile 
+                          ? country.description.split('.')[0] + '...'
+                          : country.description
+                        }
                       </p>
-                      <div className="flex flex-col space-y-2 mb-6">
-                        <span className="font-bold text-gray-700">
+                      <div className="flex flex-col space-y-1 sm:space-y-2 mb-4 sm:mb-6">
+                        <span className="text-sm sm:text-base font-bold text-gray-700">
                           • {country.stats.institutions}
                         </span>
-                        <span className="italic text-gray-700">
+                        <span className="text-sm sm:text-base italic text-gray-700">
                           • {country.stats.courses}
                         </span>
                       </div>
                     </div>
 
                     {/* Button fixed at bottom */}
-                    <div className="mt-auto pt-4">
+                    <div className="mt-auto pt-2 sm:pt-4">
                       <button
-                        className="w-full bg-red-700 hover:bg-red-800 text-white py-3 px-4 rounded-lg font-semibold flex items-center justify-center transition-colors"
+                        className="w-full bg-red-700 hover:bg-red-800 text-white py-2 sm:py-3 px-3 sm:px-4 rounded-lg text-sm sm:text-base font-semibold flex items-center justify-center transition-colors"
                         onClick={() => {
                           setPopOpen(true);
                         }}
@@ -244,7 +262,7 @@ export default function ProgramsSection({ setPopOpen }) {
                         Apply Now
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 ml-2"
+                          className="h-4 w-4 sm:h-5 sm:w-5 ml-2"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -262,14 +280,14 @@ export default function ProgramsSection({ setPopOpen }) {
             ))}
           </div>
 
-          {/* Right Scroll Button */}
+          {/* Right Scroll Button - Hidden on small mobile */}
           <button
             onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 transition z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-1 sm:p-2 rounded-full shadow-md hover:bg-gray-200 transition z-10"
             aria-label="Scroll right"
           >
             <svg
-              className="w-6 h-6 text-gray-600"
+              className="w-4 h-4 sm:w-6 sm:h-6 text-gray-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -285,12 +303,12 @@ export default function ProgramsSection({ setPopOpen }) {
           </button>
         </div>
 
-        {/* Action Buttons
-        <div className="flex flex-col sm:flex-row justify-center mt-12 gap-4">
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center transition-colors">
+        {/* You can uncomment this if you want to add action buttons
+        <div className="flex flex-col sm:flex-row justify-center mt-8 sm:mt-12 gap-3 sm:gap-4">
+          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-full flex items-center justify-center transition-colors text-sm sm:text-base">
             <span className="mr-2">💬</span> Chat with us
           </button>
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition-colors">
+          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-full transition-colors text-sm sm:text-base">
             Book Free Counselling
           </button>
         </div> */}

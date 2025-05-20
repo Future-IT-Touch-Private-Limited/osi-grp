@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .layout {
   display: flex;
   align-items: center;
@@ -56,7 +52,7 @@
 .why-choose {
   text-align: center;
   padding: 4rem 1rem;
-  background-image: url("../../public/img/LandingPage/why-choose-cgc-bg.webp");
+  background-image: url("../app/why-choose-cgc-bg.webp");
 }
 .title {
   font-size: 2rem;
@@ -137,17 +133,8 @@
   position: relative;
   padding: 4rem 1rem;
   text-align: center;
-  background-image: url("../../public/img/LandingPage/international-tieups-bg.webp");
-  background-size: cover;
-  background-position: center;
+  background-image: url("./international-tieups-bg.webp");
   height: 700px;
-}
-
-/* ↓ Adjust height on small screens */
-@media (max-width: 768px) {
-  .international-tieups {
-    height: 400px; /* or whatever smaller height looks good */
-  }
 }
 
 .it-title {
@@ -180,7 +167,7 @@
   align-items: center;
 
   z-index: 2;
-  background-image: url("../../public/img/LandingPage/tieup-outline.png");
+  background-image: url("./tieup-outline.png");
 
   background-repeat: no-repeat;
   background-size: contain;

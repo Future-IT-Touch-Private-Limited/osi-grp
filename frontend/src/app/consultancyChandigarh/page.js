@@ -24,8 +24,8 @@ export default function ConsultancyChandigarh () {
 
       <HeroSection setPopOpen={setPopOpen} />
       <ProgramsSection setPopOpen={setPopOpen} />
-      <WhyChooseUs />
-      <InternationalTieups />
+      <WhyChooseUs  setPopOpen={setPopOpen}/>
+      {/* <InternationalTieups /> */}
       <Testimonials />
       <CounsellingForm />
     </div>

@@ -1,31 +1,31 @@
 import React from "react";
 import Image from "next/image";
-import campus from "../../../../public/img/LandingPage/campus.webp";
-import leftArc from "../../../../public/img/LandingPage/why-choose-left-bg.png";
-import rightArc from "../../../../public/img/LandingPage/why-choose-right-bg.png";
-import tree from "../../../../public/img/LandingPage/tree.png";
+import campus from "../app/campus.webp";
+import leftArc from "../app/why-choose-left-bg.png";
+import rightArc from "../app/why-choose-right-bg.png";
+import tree from "../app/tree.png";
 
-import f1 from "../../../../public/img/LandingPage/feature-icon-1.png";
-import f2 from "../../../../public/img/LandingPage/feature-icon-3.png";
-import f3 from "../../../../public/img/LandingPage/feature-icon-4.png";
-import f4 from "../../../../public/img/LandingPage/feature-icon-5.png";
-import f5 from "../../../../public/img/LandingPage/feature-icon-6.png";
+import f1 from "../app/feature-icon-1.png";
+import f2 from "../app/feature-icon-3.png";
+import f3 from "../app/feature-icon-4.png";
+import f4 from "../app/feature-icon-5.png";
+import f5 from "../app/feature-icon-6.png";
 
 // just replace these with your two actual images
-import worldMap from "../../../../public/img/LandingPage/international-tieups-bg.webp";
-import arcGraphic from "../../../../public/img/LandingPage/tieup-outline.png";
-import arcGraphic2 from "../../../../public/img/LandingPage/tieup-inner-circle.png";
+import worldMap from "./international-tieups-bg.webp";
+import arcGraphic from "./tieup-outline.png";
+import arcGraphic2 from "./tieup-inner-circle.png";
 // (optional) replace these with your actual icons, or leave them as text-only
-import iconTieUps from "../../../../public/img/LandingPage/tieup-img-1.png";
-import iconCountries from "../../../../public/img/LandingPage/tieup-img-2.png";
-import iconContinents from "../../../../public/img/LandingPage/tieup-icon-3.png";
-import iconPrograms from "../../../../public/img/LandingPage/tieup-img-4.png";
+import iconTieUps from "./tieup-img-1.png";
+import iconCountries from "./tieup-img-2.png";
+import iconContinents from "./tieup-icon-3.png";
+import iconPrograms from "./tieup-img-4.png";
 
-export default function WhyChooseCGC({setPopOpen}) {
+export default function WhyChooseCGC() {
   return (
     <>
       <section className="why-choose">
-        <h2 className="title">Why is OIC Best to Handle Your Application?</h2>
+        <h2 className="title">Why Choose CGC Mohali?</h2>
         <div className="layout">
           {/* ←– LEFT ARC WITH ICONS ––*/}
           <div className="arc-wrapper left-arc">
@@ -46,7 +46,7 @@ export default function WhyChooseCGC({setPopOpen}) {
                 className="layer-ol-data"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
-                68K visas application handled
+                Lush Green Campus
               </div>
             </div>
             <div
@@ -58,7 +58,7 @@ export default function WhyChooseCGC({setPopOpen}) {
                 className="layer-tl-data"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
-                99% success rate
+                Research Centric Environment
               </div>
             </div>
             <div
@@ -70,7 +70,7 @@ export default function WhyChooseCGC({setPopOpen}) {
                 className="layer-thrl-data"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
-                7+ year experience in profession
+                100% Assured Placements
               </div>
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function WhyChooseCGC({setPopOpen}) {
                 className="layer-or-data"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
-                Get concession on your file application fee
+                Scholarships <br /> upto 100%
               </div>
             </div>
             <div
@@ -117,7 +117,9 @@ export default function WhyChooseCGC({setPopOpen}) {
                 className="layer-tr-data"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
-                Fee after outcome on your application
+                Fully WiFi
+                <br />
+                Enabled Campus
               </div>
             </div>
             <div
@@ -129,16 +131,25 @@ export default function WhyChooseCGC({setPopOpen}) {
                 className="layer-thrr-data"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
-                Transparency and competency
+                Experienced <br /> Faculty
               </div>
             </div>
           </div>
         </div>
-        <button className="btnn" onClick={()=>{setPopOpen(true)}}>Apply Now</button>
+        <button className="btnn">Apply Now</button>
       </section>
 
       <section className="international-tieups">
-        <h2 className="it-title">Tie-Ups with Global Colleges</h2>
+        <h2 className="it-title">
+          Our International Tie-Ups and Collaborations
+        </h2>
+        <p className="it-subtitle">
+          CGC Mohali boasts a vibrant global perspective through its extensive
+          international tie-ups and collaborations. By fostering partnerships
+          with esteemed institutions worldwide, CGC Mohali ensures a rich and
+          diverse learning environment that prepares students for global
+          success.
+        </p>
 
         <div
           className="it"
@@ -167,7 +178,8 @@ export default function WhyChooseCGC({setPopOpen}) {
                 />
 
                 <div className="layer-one-data">
-                  <div className="it-label">Fanshawe College (Canada)</div>
+                  <div className="it-number">200+</div>
+                  <div className="it-label">Global Tie-Ups</div>
                 </div>
               </div>
             </div>
@@ -179,9 +191,8 @@ export default function WhyChooseCGC({setPopOpen}) {
                   className="it-icon"
                 />
                 <div className="layer-two-data">
-                  <div className="it-label">
-                    Cambridge Regional College (U.K.)
-                  </div>
+                  <div className="it-number">60+</div>
+                  <div className="it-label">Countries</div>
                 </div>
               </div>
             </div>
@@ -195,7 +206,8 @@ export default function WhyChooseCGC({setPopOpen}) {
                 />
 
                 <div className="layer-three-data">
-                  <div className="it-label">Hillsdale College (U.S.)</div>
+                  <div className="it-number">05+</div>
+                  <div className="it-label">Continents</div>
                 </div>
               </div>
             </div>
@@ -205,9 +217,8 @@ export default function WhyChooseCGC({setPopOpen}) {
                 <Image src={iconPrograms} alt="Programs" className="it-icon" />
 
                 <div className="layer-four-data">
-                  <div className="it-label">
-                    New European College (Germany)
-                  </div>
+                  <div className="it-number">100+</div>
+                  <div className="it-label">Programs</div>
                 </div>
               </div>
             </div>
