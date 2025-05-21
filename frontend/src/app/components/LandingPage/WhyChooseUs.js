@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import campus from "../../../../public/img/LandingPage/campus.webp";
+import campus from "../../../../public/img/LandingPage/campus.png";
 import leftArc from "../../../../public/img/LandingPage/why-choose-left-bg.png";
 import rightArc from "../../../../public/img/LandingPage/why-choose-right-bg.png";
 import tree from "../../../../public/img/LandingPage/tree.png";
