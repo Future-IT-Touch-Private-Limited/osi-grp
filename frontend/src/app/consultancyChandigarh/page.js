@@ -8,6 +8,7 @@ import Testimonials from "../components/LandingPage/Testimonials";
 import CounsellingForm from "../components/LandingPage/CounsellingForm";
 import BookNowPop from "../components/LandingPage/BookNowPop";
 import { useState } from "react";
+import AchievementSection from "../components/LandingPage/AchievementSection";
 
 export default function ConsultancyChandigarh () {
   const [popOpen, setPopOpen] = useState(true);

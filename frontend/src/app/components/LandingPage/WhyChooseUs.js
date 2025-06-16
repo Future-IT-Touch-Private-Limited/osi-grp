@@ -20,6 +20,7 @@ import iconTieUps from "../../../../public/img/LandingPage/tieup-img-1.png";
 import iconCountries from "../../../../public/img/LandingPage/tieup-img-2.png";
 import iconContinents from "../../../../public/img/LandingPage/tieup-icon-3.png";
 import iconPrograms from "../../../../public/img/LandingPage/tieup-img-4.png";
+import AchievementSection from "./AchievementSection";
 
 export default function WhyChooseCGC({setPopOpen}) {
   return (
@@ -136,6 +137,7 @@ export default function WhyChooseCGC({setPopOpen}) {
         </div>
         <button className="btnn" onClick={()=>{setPopOpen(true)}}>Apply Now</button>
       </section>
+      <AchievementSection/>
 
       <section className="international-tieups">
         <h2 className="it-title">Tie-Ups with Global Colleges</h2>
