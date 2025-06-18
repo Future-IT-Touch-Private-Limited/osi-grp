@@ -1,12 +1,12 @@
-import AchievementCounter from './AchievementCounter';
+import AchievementCounter from "./AchievementCounter";
 
 const achievements = [
-  { icon: '🏆', title: 'VISA SUCCESS STORY', target: 15000,speed:15 },
-  { icon: '🎓', title: 'STUDENT VISA', target: 8200,speed:10 },
-  { icon: '💍', title: 'SPOUSE VISA', target: 3300, speed:7 },
-  { icon: '🧳', title: 'VISITOR VISA', target: 2500, speed:4 },
-  { icon: '🏫', title: 'DIRECT COLLEGE', target: 165,speed:2 },
-  { icon: '🥇', title: 'YEARS EXPERIENCE', target: 20,speed:1 },
+  { icon: "🏆", title: "VISA SUCCESS STORY", target: 14000, speed: 15 },
+  { icon: "🎓", title: "STUDENT VISA", target: 8000, speed: 10 },
+  { icon: "💍", title: "SPOUSE VISA", target: 3000, speed: 7 },
+  { icon: "🧳", title: "VISITOR VISA", target: 2500, speed: 4 },
+  { icon: "🏫", title: "DIRECT COLLEGE", target: 150, speed: 2 },
+  { icon: "🥇", title: "YEARS EXPERIENCE", target: 7, speed: 1 },
 ];
 
 export default function AchievementSection() {
@@ -15,7 +15,9 @@ export default function AchievementSection() {
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold">Our Achievements</h1>
         <p className="text-gray-600 mt-4 max-w-xl mx-auto">
-          GEE Immigration Consultant & Education Consultancy, the best study permit consultant in Punjab, specializes in facilitating admissions to global colleges. With 20+ years of experience.
+          OIC Global best Visa Consultant in Chandigarh - North India,
+          Specializes in facilitating admissions to global colleges. With More
+          than 7+ years of experience.
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-8 max-w-7xl mx-40">

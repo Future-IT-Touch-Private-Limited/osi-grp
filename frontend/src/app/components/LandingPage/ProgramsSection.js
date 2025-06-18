@@ -2,9 +2,8 @@
 import { useRef, useEffect, useState } from "react";
 
 export default function ProgramsSection({ setPopOpen }) {
-  const scrollContainerRef = useRef(null);
   const [cardsPerView, setCardsPerView] = useState(3);
-  const [cardWidth, setCardWidth] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   // Determine how many cards should be visible based on screen size
@@ -18,15 +17,13 @@ export default function ProgramsSection({ setPopOpen }) {
         // md
         setCardsPerView(2);
         setIsMobile(false);
-      } else if (window.innerWidth >= 640) {
-        // sm
-        setCardsPerView(1.5);
-        setIsMobile(false);
       } else {
-        // xs
-        setCardsPerView(1.2);
+        // sm and below
+        setCardsPerView(1);
         setIsMobile(true);
       }
+      // Reset to first page when screen size changes
+      setCurrentIndex(0);
     };
 
     // Set initial value
@@ -36,49 +33,6 @@ export default function ProgramsSection({ setPopOpen }) {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  // Calculate card width and initialize scroll position
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      const containerWidth = scrollContainerRef.current.clientWidth;
-      const gap = 32; // 32px for gap-8
-      const calculatedCardWidth =
-        (containerWidth - gap * (cardsPerView - 1)) / cardsPerView;
-      setCardWidth(calculatedCardWidth);
-
-      // Reset scroll position to start
-      scrollContainerRef.current.scrollTo({ left: 0, behavior: "auto" });
-    }
-  }, [cardsPerView]);
-
-  const scrollLeft = () => {
-    if (scrollContainerRef.current && cardWidth > 0) {
-      const totalCardWidth = cardWidth + 32; // card + gap
-      const currentScroll = scrollContainerRef.current.scrollLeft;
-      const newScroll = Math.max(0, currentScroll - totalCardWidth);
-
-      scrollContainerRef.current.scrollTo({
-        left: newScroll,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current && cardWidth > 0) {
-      const totalCardWidth = cardWidth + 32; // card + gap
-      const currentScroll = scrollContainerRef.current.scrollLeft;
-      const maxScroll =
-        scrollContainerRef.current.scrollWidth -
-        scrollContainerRef.current.clientWidth;
-      const newScroll = Math.min(maxScroll, currentScroll + totalCardWidth);
-
-      scrollContainerRef.current.scrollTo({
-        left: newScroll,
-        behavior: "smooth",
-      });
-    }
-  };
 
   const countries = [
     {
@@ -97,7 +51,7 @@ export default function ProgramsSection({ setPopOpen }) {
       name: "USA",
       flag: "🇺🇸",
       image: "/img/LandingPage/study-in-canada.jpg",
-      flagImage: "/img/LandingPage/canada-flag.png",
+      flagImage: "/img/LandingPage/usa-flag.webp",
       description:
         "The USA boasts of the world's top-ranked universities, producing highly skilled professionals. It is a preferred destination for students seeking to build a successful career.",
       stats: {
@@ -109,7 +63,7 @@ export default function ProgramsSection({ setPopOpen }) {
       name: "Germany",
       flag: "🇩🇪",
       image: "/img/LandingPage/study-in-canada.jpg",
-      flagImage: "/img/LandingPage/canada-flag.png",
+      flagImage: "/img/LandingPage/germany.jpg",
       description:
         "As visa restrictions tighten in several countries, Germany is gaining popularity among international students. With no tuition fees at most public universities, It has become the top choice for those willing to pursue higher education abroad.",
       stats: {
@@ -121,7 +75,7 @@ export default function ProgramsSection({ setPopOpen }) {
       name: "UK",
       flag: "🇬🇧",
       image: "/img/LandingPage/study-in-canada.jpg",
-      flagImage: "/img/LandingPage/canada-flag.png",
+      flagImage: "/img/LandingPage/uk-flag.jpg",
       description:
         "The U.K. is another leading destination for international students, offering world-class higher education. Additionally, the country supports a good work-life balance for professionals and better health care facilities.",
       stats: {
@@ -133,7 +87,7 @@ export default function ProgramsSection({ setPopOpen }) {
       name: "Australia",
       flag: "🇦🇺",
       image: "/img/LandingPage/study-in-canada.jpg",
-      flagImage: "/img/LandingPage/canada-flag.png",
+      flagImage: "/img/LandingPage/austraila-flag.webp",
       description:
         "Australia is a popular choice among international students due to its stable income prospects and abundant professional opportunities. Its top-tier universities equip students with the skills needed to thrive in their careers.",
       stats: {
@@ -145,7 +99,7 @@ export default function ProgramsSection({ setPopOpen }) {
       name: "New Zealand",
       flag: "🇳🇿",
       image: "/img/LandingPage/study-in-canada.jpg",
-      flagImage: "/img/LandingPage/canada-flag.png",
+      flagImage: "/img/LandingPage/new-zealand-flag.jpg",
       description:
         "Known for its stunning landscapes, New Zealand has become one of the most attractive destinations for higher education. Its universities are dedicated to helping students build successful careers in their chosen fields.",
       stats: {
@@ -154,6 +108,24 @@ export default function ProgramsSection({ setPopOpen }) {
       },
     },
   ];
+
+  const totalPages = Math.ceil(countries.length / cardsPerView);
+  const maxIndex = countries.length - cardsPerView;
+
+  const goToPrevious = () => {
+    setCurrentIndex(prev => Math.max(0, prev - cardsPerView));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex(prev => Math.min(maxIndex, prev + cardsPerView));
+  };
+
+  const getCurrentCards = () => {
+    return countries.slice(currentIndex, currentIndex + cardsPerView);
+  };
+
+  const canGoPrevious = currentIndex > 0;
+  const canGoNext = currentIndex < maxIndex;
 
   return (
     <section className="py-8 sm:py-12 md:py-16 bg-white">
@@ -166,14 +138,19 @@ export default function ProgramsSection({ setPopOpen }) {
         </p>
 
         <div className="relative">
-          {/* Left Scroll Button - Hidden on small mobile */}
+          {/* Left Navigation Button */}
           <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-1 sm:p-2 rounded-full shadow-md hover:bg-gray-200 transition z-10"
-            aria-label="Scroll left"
+            onClick={goToPrevious}
+            disabled={!canGoPrevious}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 sm:p-3 rounded-full shadow-md transition z-10 ${
+              canGoPrevious 
+                ? 'hover:bg-gray-200 text-gray-600' 
+                : 'text-gray-300 cursor-not-allowed'
+            }`}
+            aria-label="Previous cards"
           >
             <svg
-              className="w-4 h-4 sm:w-6 sm:h-6 text-gray-600"
+              className="w-5 h-5 sm:w-6 sm:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -188,106 +165,99 @@ export default function ProgramsSection({ setPopOpen }) {
             </svg>
           </button>
 
-          {/* Instructions for mobile users */}
-          {isMobile && (
-            <div className="text-center text-gray-500 text-sm mb-3">
-              Swipe cards to see more options
-            </div>
-          )}
-
-          {/* Responsive Card Container */}
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-4 sm:gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-4 mx-8 sm:mx-10 md:mx-12 touch-pan-x"
-          >
-            {countries.map((country, index) => (
-              <div
-                key={index}
-                className="country-card flex-shrink-0 snap-center border border-gray-200 sm:border-2 sm:border-black rounded-lg shadow-md sm:shadow-lg"
-                style={{
-                  width: cardWidth > 0 ? `${cardWidth}px` : "100%",
-                  minWidth: cardWidth > 0 ? `${cardWidth}px` : "240px",
-                  maxWidth: "500px",
-                }}
-              >
-                <div className="relative p-3 sm:p-4 md:p-6 rounded-lg shadow-lg bg-white overflow-hidden flex flex-col h-full">
-                  {/* Transparent flag background */}
-                  <div
-                    className="absolute inset-0 bg-center bg-cover opacity-10 blur-sm"
-                    style={{ backgroundImage: `url('${country.flagImage}')` }}
-                  ></div>
-
-                  {/* Content layer with flex column */}
-                  <div className="relative z-10 flex flex-col h-full">
-                    {/* Image */}
+          {/* Cards Container */}
+          <div className="mx-8 sm:mx-12 md:mx-16">
+            <div className={`grid gap-4 sm:gap-6 md:gap-8 ${
+              cardsPerView === 1 ? 'grid-cols-1' :
+              cardsPerView === 2 ? 'grid-cols-2' :
+              'grid-cols-3'
+            }`}>
+              {getCurrentCards().map((country, index) => (
+                <div
+                  key={currentIndex + index}
+                  className="country-card border border-gray-200 sm:border-2 sm:border-black rounded-lg shadow-md sm:shadow-lg transition-all duration-300"
+                >
+                  <div className="relative p-3 sm:p-4 md:p-6 rounded-lg shadow-lg bg-white overflow-hidden flex flex-col h-full min-h-[400px] sm:min-h-[450px] md:min-h-[500px]">
+                    {/* Transparent flag background */}
                     <div
-                      className="h-32 sm:h-40 md:h-48 bg-cover bg-center rounded-t-lg"
-                      style={{ backgroundImage: `url('${country.image}')` }}
+                      className="absolute inset-0 bg-center bg-cover opacity-10 blur-sm"
+                      style={{ backgroundImage: `url('${country.flagImage}')` }}
                     ></div>
 
-                    {/* Flag */}
-                    <div className="flex justify-end -mt-8 sm:-mt-10 mr-2 sm:mr-3 text-3xl sm:text-4xl">
-                      {country.flag}
-                    </div>
+                    {/* Content layer with flex column */}
+                    <div className="relative z-10 flex flex-col h-full">
+                      {/* Image */}
+                      <div
+                        className="h-32 sm:h-40 md:h-48 bg-cover bg-center rounded-t-lg flex-shrink-0"
+                        style={{ backgroundImage: `url('${country.image}')` }}
+                      ></div>
 
-                    {/* Content (will grow to fill space) */}
-                    <div className="flex-grow">
-                      <h3 className="text-xl sm:text-2xl font-bold mt-4 sm:mt-6 md:mt-8 mb-2 sm:mb-4">
-                        Study in {country.name}
-                      </h3>
-                      <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
-                        {isMobile 
-                          ? country.description.split('.')[0] + '...'
-                          : country.description
-                        }
-                      </p>
-                      <div className="flex flex-col space-y-1 sm:space-y-2 mb-4 sm:mb-6">
-                        <span className="text-sm sm:text-base font-bold text-gray-700">
-                          • {country.stats.institutions}
-                        </span>
-                        <span className="text-sm sm:text-base italic text-gray-700">
-                          • {country.stats.courses}
-                        </span>
+                      {/* Flag */}
+                      <div className="flex justify-end -mt-8 sm:-mt-10 mr-2 sm:mr-3 text-3xl sm:text-4xl">
+                        {country.flag}
                       </div>
-                    </div>
 
-                    {/* Button fixed at bottom */}
-                    <div className="mt-auto pt-2 sm:pt-4">
-                      <button
-                        className="w-full bg-red-700 hover:bg-red-800 text-white py-2 sm:py-3 px-3 sm:px-4 rounded-lg text-sm sm:text-base font-semibold flex items-center justify-center transition-colors"
-                        onClick={() => {
-                          setPopOpen(true);
-                        }}
-                      >
-                        Apply Now
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4 sm:h-5 sm:w-5 ml-2"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
+                      {/* Content (will grow to fill space) */}
+                      <div className="flex-grow flex flex-col">
+                        <h3 className="text-xl sm:text-2xl font-bold mt-4 sm:mt-6 md:mt-8 mb-2 sm:mb-4">
+                          Study in {country.name}
+                        </h3>
+                        <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 flex-grow">
+                          {country.description}
+                        </p>
+                        <div className="flex flex-col space-y-1 sm:space-y-2 mb-4 sm:mb-6">
+                          <span className="text-sm sm:text-base font-bold text-gray-700">
+                            • {country.stats.institutions}
+                          </span>
+                          <span className="text-sm sm:text-base italic text-gray-700">
+                            • {country.stats.courses}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Button fixed at bottom */}
+                      <div className="mt-auto pt-2 sm:pt-4">
+                        <button
+                          className="w-full bg-red-700 hover:bg-red-800 text-white py-2 sm:py-3 px-3 sm:px-4 rounded-lg text-sm sm:text-base font-semibold flex items-center justify-center transition-colors"
+                          onClick={() => {
+                            setPopOpen(true);
+                          }}
                         >
-                          <path
-                            fillRule="evenodd"
-                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </button>
+                          Apply Now
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4 sm:h-5 sm:w-5 ml-2"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          {/* Right Scroll Button - Hidden on small mobile */}
+          {/* Right Navigation Button */}
           <button
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-1 sm:p-2 rounded-full shadow-md hover:bg-gray-200 transition z-10"
-            aria-label="Scroll right"
+            onClick={goToNext}
+            disabled={!canGoNext}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 sm:p-3 rounded-full shadow-md transition z-50 ${
+              canGoNext 
+                ? 'hover:bg-gray-200 text-gray-600' 
+                : 'text-gray-300 cursor-not-allowed'
+            }`}
+            aria-label="Next cards"
           >
             <svg
-              className="w-4 h-4 sm:w-6 sm:h-6 text-gray-600"
+              className="w-5 h-5 sm:w-6 sm:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -303,25 +273,30 @@ export default function ProgramsSection({ setPopOpen }) {
           </button>
         </div>
 
-        {/* You can uncomment this if you want to add action buttons
-        <div className="flex flex-col sm:flex-row justify-center mt-8 sm:mt-12 gap-3 sm:gap-4">
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-full flex items-center justify-center transition-colors text-sm sm:text-base">
-            <span className="mr-2">💬</span> Chat with us
-          </button>
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-full transition-colors text-sm sm:text-base">
-            Book Free Counselling
-          </button>
+        {/* Pagination Dots */}
+        {/* <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
+          {Array.from({ length: totalPages }, (_, pageIndex) => {
+            const isActive = Math.floor(currentIndex / cardsPerView) === pageIndex;
+            return (
+              <button
+                key={pageIndex}
+                onClick={() => setCurrentIndex(pageIndex * cardsPerView)}
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${
+                  isActive 
+                    ? 'bg-red-700 scale-125' 
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to page ${pageIndex + 1}`}
+              />
+            );
+          })}
+        </div> */}
+
+        {/* Page indicator for mobile */}
+        {/* <div className="text-center text-gray-500 text-sm mt-3">
+          {Math.floor(currentIndex / cardsPerView) + 1} of {totalPages}
         </div> */}
       </div>
-      <style jsx>{`
-        .hide-scrollbar {
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none; /* Chrome, Safari, Opera */
-        }
-      `}</style>
     </section>
   );
 }

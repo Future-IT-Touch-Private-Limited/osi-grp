@@ -25,7 +25,7 @@ import AchievementSection from "./AchievementSection";
 export default function WhyChooseCGC({setPopOpen}) {
   return (
     <>
-      <section className="why-choose">
+     <section className="why-choose">
         <h2 className="title">Why is OIC Best to Handle Your Application?</h2>
         <div className="layout">
           {/* ←– LEFT ARC WITH ICONS ––*/}
@@ -44,7 +44,7 @@ export default function WhyChooseCGC({setPopOpen}) {
             >
               <Image src={tree} className="iconSmall" alt="Decorative arc" />
               <div
-                className="layer-ol-data"
+                className="layer-ol-data text-xs sm:text-sm md:text-base lg:text-lg"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
                 68K visas application handled
@@ -56,7 +56,7 @@ export default function WhyChooseCGC({setPopOpen}) {
             >
               <Image src={f1} className="iconSmall" alt="Decorative arc" />
               <div
-                className="layer-tl-data"
+                className="layer-tl-data text-xs sm:text-sm md:text-base lg:text-lg"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
                 99% success rate
@@ -68,7 +68,7 @@ export default function WhyChooseCGC({setPopOpen}) {
             >
               <Image src={f2} className="iconSmall" alt="Decorative arc" />
               <div
-                className="layer-thrl-data"
+                className="layer-thrl-data text-xs sm:text-sm md:text-base lg:text-lg"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
                 7+ year experience in profession
@@ -103,7 +103,7 @@ export default function WhyChooseCGC({setPopOpen}) {
             >
               <Image src={f3} className="iconSmall" alt="Decorative arc" />
               <div
-                className="layer-or-data"
+                className="layer-or-data text-xs sm:text-sm md:text-base lg:text-lg"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
                 Get concession on your file application fee
@@ -115,7 +115,7 @@ export default function WhyChooseCGC({setPopOpen}) {
             >
               <Image src={f4} className="iconSmall" alt="Decorative arc" />
               <div
-                className="layer-tr-data"
+                className="layer-tr-data text-xs sm:text-sm md:text-base lg:text-lg"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
                 Fee after outcome on your application
@@ -127,7 +127,7 @@ export default function WhyChooseCGC({setPopOpen}) {
             >
               <Image src={f5} className="iconSmall" alt="Decorative arc" />
               <div
-                className="layer-thrr-data"
+                className="layer-thrr-data text-xs sm:text-sm md:text-base lg:text-lg"
                 style={{ position: "absolute", fontWeight: "bold" }}
               >
                 Transparency and competency

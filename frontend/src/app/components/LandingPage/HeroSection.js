@@ -56,7 +56,7 @@ export default function HeroSection({ setPopOpen }) {
             </div>
 
             {/* Mobile menu button */}
-            <button 
+            <button
               className="md:hidden p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
@@ -95,17 +95,17 @@ export default function HeroSection({ setPopOpen }) {
       {/* Hero Section with full-screen background image */}
       <section className="relative h-screen w-full">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/img/LandingPage/poster.jpg"
-            alt="Immigration Services Background"
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        </div>
+       <div className="absolute inset-0 z-0">
+  <Image
+    src="/img/LandingPage/poster.jpg"
+    alt="Immigration Services Background"
+    fill
+    className="object-cover object-right" // This will show the right side on mobile
+    priority
+  />
+  {/* Dark overlay for better text readability */}
+  <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+</div>
 
         {/* Content */}
         <div className="relative z-20 h-full flex items-center">
@@ -124,7 +124,7 @@ export default function HeroSection({ setPopOpen }) {
                 </div>
               </div>
 
-              <button 
+              <button
                 className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white text-lg rounded-md hover:bg-blue-700 transition"
                 onClick={() => setPopOpen(true)}
               >
